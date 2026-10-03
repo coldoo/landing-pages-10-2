@@ -1,5 +1,15 @@
 # Moonshot · Jalapeño landing pages (2 Oct 2026)
 
+## Preview first
+
+**See all five pages working before you build anything:** https://claude.ai/artifact/G33mDVHjQBA8JJq2Dfocg9
+
+Each page there is labeled with the URL it goes live at. Open any of them on desktop or on a phone. The preview shows
+the same pages as this repo; only the links between them differ (in the preview the files sit side by side, here each
+page is in its URL folder).
+
+## The pages
+
 Static pages, ready to host. Each folder is the URL it serves. Every page is one self-contained `index.html`
 (CSS and JS inline, no build step); the pages share `/img` and `/vid`.
 
