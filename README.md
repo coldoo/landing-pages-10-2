@@ -40,29 +40,142 @@ offer → specs → privacy → comparison → FAQ → founder story → contact
 They also have a slim floating bar at the bottom with the price and a Pre-order button. It hides while the offer is
 on screen.
 
-**Contact (`/contact`)** is new: plain text like the current contact page, but friendlier. It has jump links for
-pre-orders, using Jalapeño, privacy and deletion, and press. It names one address, privacy@moonshot.computer, and has
-no phone number. Every page's "Contact" link points to `/contact`. To keep the existing contact page instead, change
-those links.
+**Contact (`/contact`) replaces the current contact page.** It is served at the same address,
+moonshot.computer/contact, so deploying this folder replaces the page that's there now. It keeps everything the
+current page says (one address for everything, what to include for support, privacy and deletion requests, press and
+partnerships, and the San Francisco business location), written as friendlier plain text with jump links at the top.
+It names one address, privacy@moonshot.computer, and has no phone number. Every page's "Contact" link points to
+`/contact`.
 
 ## To wire up before launch
 
-1. **Checkout.** Every Pre-order button scrolls to the offer section. The checkout button there is
-   `<a id="rsv-btn" href="#offer">` on every page. Replace `#offer` with your Stripe Checkout or Payment Link.
-   The page keeps the shopper's choice on that button as `data-color` (orange / blue / black) and `data-qty` (1-10),
-   so your checkout can pass the color and quantity along (as Checkout Session metadata or a quantity, for example).
-2. **Pixel and conversion events.** These pages fire no tracking yet. Add the Meta pixel (and the Google Ads tag) to each
-   `<head>`, then fire:
-   - `ViewContent` on load;
-   - `AddToCart` on a color or quantity change;
-   - `InitiateCheckout` on the `#rsv-btn` click;
-   - `Purchase` from the Stripe success page, ideally also server-side through the Conversions API, deduplicated
-     by event id.
+The pages work as soon as they're hosted, but they can't take orders or report sales until steps 1 and 2 are done.
+Do them before any ad traffic points here.
 
-   Ad sets optimize for Purchase, so that event has to work.
-3. **Units left.** "190 units left" in the offer is static text. Wire it to the real count, or remove it.
-4. **Links.** "Privacy" goes to moonshot.computer/privacy, and "About" to moonshot.computer/about. Note that /about
-   still describes the old iPhone-app beta.
+### 1. Connect checkout (required)
+
+Every "Pre-order" button on a page scrolls to the offer section. The button that should open checkout is the big
+"Pre-order Jalapeño now" button in the offer:
+
+```html
+<a class="btn" id="rsv-btn" href="#offer">Pre-order Jalapeño now</a>
+```
+
+It appears once on each of the four pages (`index.html`, `lp-01`, `lp-02`, `lp-03`). Replace `#offer` with the Stripe
+checkout link. The live homepage already has a working Stripe pre-order, so reuse that link or product.
+
+The page keeps the shopper's choices on that button, updated as they click:
+- `data-color` is `orange`, `blue` or `black`;
+- `data-qty` is 1 to 10, and the price shown updates to $99 × qty.
+
+To send the shopper to checkout with those choices, intercept the click. For example, with a Checkout Session created
+by your server:
+
+```html
+<script>
+document.getElementById('rsv-btn').addEventListener('click', async function (e) {
+  e.preventDefault();
+  const color = this.dataset.color || 'orange';
+  const qty = Number(this.dataset.qty || 1);
+  // your endpoint creates a Stripe Checkout Session (price = $99, quantity = qty, metadata.color = color)
+  // and returns its URL
+  const r = await fetch('/api/checkout', {method: 'POST', headers: {'Content-Type': 'application/json'},
+                                          body: JSON.stringify({color, qty})});
+  const {url} = await r.json();
+  location.href = url;
+});
+</script>
+```
+
+With Stripe Payment Links instead (no server), make one link per color and pick it by `data-color`. Turn on
+"adjustable quantity" in the link to let the shopper change quantity in Stripe.
+
+### 2. Add tracking (required for ads)
+
+These pages fire no tracking yet. The live homepage loads the Meta pixel and a Google Ads tag; replacing the homepage
+removes them, so add them back to the `<head>` of all four pages (`index.html`, `lp-01`, `lp-02`, `lp-03`). Use the
+same pixel ID and Ads tag as the live site.
+
+Then fire these events. The ad sets optimize for **Purchase**, so that one has to work.
+
+| Event | When | How |
+|---|---|---|
+| `PageView` | page load | included in the pixel base code |
+| `ViewContent` | page load | snippet below |
+| `AddToCart` | shopper changes color or quantity | snippet below |
+| `InitiateCheckout` | click on `#rsv-btn` | snippet below |
+| `Purchase` | the Stripe success page, after payment | on the success page, plus the Conversions API from a Stripe webhook |
+
+Paste this before `</body>` on the four pages, after the pixel base code:
+
+```html
+<script>
+(function () {
+  if (!window.fbq) return;
+  var btn = document.getElementById('rsv-btn');
+  var value = function () { return 99 * Number(btn.dataset.qty || 1); };
+  fbq('track', 'ViewContent', {content_name: 'Jalapeño', value: 99, currency: 'USD'});
+  document.querySelectorAll('.colors button, #q-plus, #q-minus').forEach(function (el) {
+    el.addEventListener('click', function () {
+      fbq('track', 'AddToCart', {content_ids: [btn.dataset.color || 'orange'], value: value(), currency: 'USD'});
+    });
+  });
+  btn.addEventListener('click', function () {
+    fbq('track', 'InitiateCheckout', {content_ids: [btn.dataset.color || 'orange'],
+                                      num_items: Number(btn.dataset.qty || 1), value: value(), currency: 'USD'});
+  });
+})();
+</script>
+```
+
+**Purchase** belongs on the page Stripe returns to after payment (the Checkout `success_url`):
+`fbq('track', 'Purchase', {value: <amount>, currency: 'USD'}, {eventID: '<checkout session id>'})`.
+
+Also send the same event server-side through Meta's Conversions API from a Stripe `checkout.session.completed`
+webhook, with the same event ID so Meta counts it once. This catches buyers whose browsers block the pixel.
+
+Pass the ad's UTM tags and `fbclid` into the Checkout Session metadata (never in the URL) to tie each order to its ad.
+Mirror Purchase to the Google Ads tag as a conversion.
+
+### 3. Units left: make it live, or remove it (optional)
+
+The offer shows "Founding batch · **190 units left**". The number is fixed text in each page:
+
+```html
+<span class="urg">Founding batch · <em>190 units left</em></span>
+```
+
+To make it real, count paid pre-orders in Stripe and show the batch size minus the units sold:
+
+1. Add a small server endpoint, for example `/api/units-left`, that sums the quantity of paid Checkout Sessions for the
+   Jalapeño price. Use Stripe's `checkout.sessions.list` with `status: 'complete'`, or keep a running total that the
+   `checkout.session.completed` webhook updates. It returns `BATCH_SIZE - sold` (set `BATCH_SIZE` to the real founding
+   batch size; the pages assume 200). Cache the result for a minute or so, so page loads don't hit Stripe each time.
+2. Paste this before `</body>` on the four pages:
+
+```html
+<script>
+fetch('/api/units-left').then(function (r) { return r.json(); }).then(function (d) {
+  var el = document.querySelector('.urg em');
+  if (el && typeof d.left === 'number') el.textContent = d.left > 0 ? d.left + ' units left' : 'Sold out';
+}).catch(function () {});
+</script>
+```
+
+If the endpoint fails, the page keeps showing the fixed text. If the count won't be wired up, remove the
+`<em>190 units left</em>` part (or the whole `urg` line) so the page never shows a number that isn't true.
+
+### 4. Check what the current homepage does before replacing it
+
+`/` replaces the current moonshot.computer homepage. Before swapping it, keep anything the live page handles that
+this one doesn't:
+- the Stripe checkout link (step 1);
+- the pixel and Google Ads tag (step 2);
+- the $10 friend-referral link and card;
+- any other scripts the live page loads.
+
+Other links: "Privacy" goes to moonshot.computer/privacy, and "About" to moonshot.computer/about. Note that /about still
+describes the old iPhone-app beta.
 
 ## Still to confirm with Dylan
 
