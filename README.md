@@ -64,15 +64,6 @@ Checkout and tracking already exist on the live site. These pages are new HTML, 
 "Privacy" links to moonshot.computer/privacy, and "About" to moonshot.computer/about. Note that /about still describes
 the old iPhone-app beta.
 
-## Still to confirm with Dylan
-
-- The offer terms shown on the pages: $99 (retail $150), "1 free year of Jalapeño", "1-year warranty", "Priority
-  shipping for the first batch", "First access to everything we build", "Full refund anytime before shipping" and
-  "Ships December 2026".
-- The founder story on the three landers is Dylan's family story, signed by all three founders. It needs his sign-off.
-- The comparison marks were researched from each rival's own site on 2 Oct 2026; the sources are listed in the build
-  repo. A rival feature launched within the last month counts as ✗ (Plaud's agent). Re-check before launch.
-
 ## Videos and images
 
 - Videos are MP4s with JPG posters. A small script on each page downloads a clip whole and plays it from memory,
