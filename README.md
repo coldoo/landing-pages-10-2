@@ -15,7 +15,8 @@ Static pages, ready to host. Each folder is the URL it serves. Every page is one
 
 | Folder | URL | What it is |
 |---|---|---|
-| `/` (`index.html`) | **moonshot.computer** | The universal homepage. Replaces the current homepage. |
+| `/` (`index.html`) | **moonshot.computer/a** (live) | The universal page, "Handled before you ask." 5 Oct: only the line under the headline changed (see "Changes"). |
+| `e/` | **moonshot.computer/e** (new) | A second universal page, "Laugh with it. Argue with it. Build with it." Its own URL; it does not replace /a. |
 | `lp-01/` | **moonshot.computer/lp-01** | Ad landing page for adults with ADHD |
 | `lp-02/` | **moonshot.computer/lp-02** | Ad landing page for working dads |
 | `lp-03/` | **moonshot.computer/lp-03** | Ad landing page for moms |
@@ -101,3 +102,13 @@ changes in the source.
 
 Optional: the three `/lp-0x` pages are ad landers. If you don't want them in search results, add
 `<meta name="robots" content="noindex">` to their `<head>`.
+
+## Changes
+
+Each change ships as the one folder it touches; the other pages stay as they are.
+
+- **5 Oct, `/a` (root `index.html`):** the line under "Handled before you ask." is now "Jalapeño hears your day,
+  speaks up first and takes care of it." (was "Personal AI. A little company for your next big thing."). Nothing else
+  on the page changed.
+- **5 Oct, new `/e` (`e/index.html`):** the "Laugh with it." universal page, plus its media. Its hero video is
+  `vid/e-hero.mp4`, a 720p re-encode that plays on iPhone, so it doesn't touch `/a`'s `vid/uni-hero.mp4`.
