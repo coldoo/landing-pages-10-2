@@ -17,6 +17,7 @@ Static pages, ready to host. Each folder is the URL it serves. Every page is one
 |---|---|---|
 | `/` (`index.html`) | **moonshot.computer/a** (live) | The universal page, "Handled before you ask." Unchanged. |
 | `e/` | **moonshot.computer/e** (new) | A second universal page, "Laugh with it. Argue with it. Build with it." Its own URL; it does not replace /a. |
+| `f/` | **moonshot.computer/f** (new) | Ad lander for the "Handled before you ask." ads: the lp-0x structure, no persona. |
 | `lp-01/` | **moonshot.computer/lp-01** | Ad landing page for adults with ADHD |
 | `lp-02/` | **moonshot.computer/lp-02** | Ad landing page for working dads |
 | `lp-03/` | **moonshot.computer/lp-03** | Ad landing page for moms |
@@ -107,5 +108,10 @@ Optional: the three `/lp-0x` pages are ad landers. If you don't want them in sea
 
 Each change ships as the one folder it touches; the other pages stay as they are.
 
+- **5 Oct, new `/f` (`f/index.html`), UPLOAD ONLY THIS FOLDER:** a new ad lander, "Handled before you ask.", built
+  in the same structure as the `/lp-0x` pages but for everyone (no persona), with `/a`'s Meet section. Ship
+  `f/index.html` plus its six new media files (`img/speaks-hero.webp`, `img/speaks-close.webp`,
+  `vid/speaks-step1.mp4/.jpg`, `vid/speaks-step3.mp4/.jpg`). Nothing else changed: don't redeploy `/a`, `/e`, the
+  `/lp-0x` pages or `/contact` for this change. It links to `/contact` like the other pages.
 - **5 Oct, new `/e` (`e/index.html`):** the "Laugh with it." universal page, plus its media. Its hero video is
   `vid/e-hero.mp4`, a 720p re-encode that plays on iPhone, so it doesn't touch `/a`'s `vid/uni-hero.mp4`.
