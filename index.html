@@ -1478,6 +1478,15 @@ body{padding-bottom:0 !important}
       .then(function(b){v.src=URL.createObjectURL(b.type?b:new Blob([b],{type:'video/mp4'}));playV(v);})
       .catch(function(){v.src=src;playV(v);});}else{v.src=src;playV(v);}}
   vids.filter(function(v){return v.classList.contains('uvid');}).forEach(loadV);
+  // iOS (6 Oct, same fix /e got on 4 Oct): the first play() can land before the blob is ready, or be refused in an
+  // in-app browser, and is never retried; retry when the clip can play, when the tab returns, and on the first touch
+  (function(){var h=document.querySelector('video.uvid');if(!h)return;
+    var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm)return;
+    function again(){if(h.paused&&!h.ended)playV(h);}
+    ['loadeddata','canplay','canplaythrough'].forEach(function(ev){h.addEventListener(ev,again);});
+    document.addEventListener('visibilitychange',function(){if(!document.hidden)again();});
+    ['touchstart','scroll','click'].forEach(function(ev){window.addEventListener(ev,function once(){again();window.removeEventListener(ev,once);},{passive:true});});
+  })();
   if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){loadV(en.target);io.unobserve(en.target);}});},{rootMargin:'400px 0px'});
     vids.forEach(function(v){if(!v.dataset.loaded)io.observe(v);});}else{vids.forEach(loadV);}
   function near(){vids.forEach(function(v){if(!v.dataset.loaded&&v.getBoundingClientRect().top<window.innerHeight+400)loadV(v);});}
