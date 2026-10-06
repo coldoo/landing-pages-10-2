@@ -10,17 +10,21 @@ Static pages for moonshot.computer. Each folder is the URL it serves; every page
 |---|---|---|
 | `/` (`index.html`) | moonshot.computer/**a** | "Handled before you ask." The main ad page. |
 | `f/` | moonshot.computer/**f** | Ad lander for the "Handled before you ask." ads, lp-0x structure, no persona. |
-| `e/` | moonshot.computer/**e** | "Laugh with it. Argue with it. Build with it." Second universal page. |
+| `e/` | moonshot.computer/**e** | "Laugh with it. Argue with it. Build with it." Second universal page. **Not live yet: /e shows the contact page (see Changes).** |
 | `lp-01/` | moonshot.computer/**b** | Adults with ADHD |
 | `lp-02/` | moonshot.computer/**c** | Working dads |
 | `lp-03/` | moonshot.computer/**d** | Moms |
-| `contact/` | moonshot.computer/contact | Contact page |
+| `contact/` | moonshot.computer/contact | Contact page. **Live /contact still shows the old page (see Changes).** |
 
 The `lp-0x` folder names don't match their live paths (/b, /c, /d); keep the mapping above.
 
 ## Changes (newest first)
 
 Each change ships only the files listed. Don't redeploy anything else.
+
+- **6 Oct, FIX /e and /contact (they're swapped on the live site).** Checked 6 Oct: moonshot.computer/e shows the new
+  contact page ("Questions? Write to us."), and /contact shows the old one. Serve `e/index.html` (the "Laugh with it."
+  page, with `vid/e-hero.mp4`) at /e, and `contact/index.html` at /contact.
 
 - **6 Oct, /a hero video plays on iPhone. UPLOAD 2 FILES: `index.html` and `vid/uni-hero.mp4`.**
   The hero showed a still frame on iPhones and inside the Facebook and Instagram in-app browsers. Two fixes:
