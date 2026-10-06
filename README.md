@@ -22,6 +22,10 @@ The `lp-0x` folder names don't match their live paths (/b, /c, /d); keep the map
 
 Each change ships only the files listed. Don't redeploy anything else.
 
+- **6 Oct, /a new section order. UPLOAD `index.html`** (same file as the hero video fix below, so one upload covers
+  both). The top is unchanged through "Thought you'd want to know."; then apps, how it works (3 steps), privacy, offer,
+  specs, a new MCP section (from /e), the comparison and the FAQ. The hero's "Privacy built on iPhone's Secure
+  Enclave..." line now jumps to the privacy section. No copy changed.
 - **6 Oct, FIX /e and /contact (they're swapped on the live site).** Checked 6 Oct: moonshot.computer/e shows the new
   contact page ("Questions? Write to us."), and /contact shows the old one. Serve `e/index.html` (the "Laugh with it."
   page, with `vid/e-hero.mp4`) at /e, and `contact/index.html` at /contact.
