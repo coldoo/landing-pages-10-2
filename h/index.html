@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>5 reasons why busy dads reach for Moonshot</title>
+<meta name="robots" content="noindex, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&display=swap">
+<style>
+:root{--ink:#14181b;--paper:#ffffff;--wash:#f4f7f9;--muted:#5b6670;--line:#e3e8ec;--orange:#ff6a1a;--orange-ink:#ffffff;--ok:#1c9a55;
+--body:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:18px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+.bar{background:var(--ink);color:#fff;text-align:center;font:700 13px/1.4 var(--body);letter-spacing:.04em;padding:9px 16px}
+.wrap{max-width:720px;margin:0 auto;padding-inline:20px}
+header.top{display:flex;align-items:center;justify-content:center;padding-block:16px;border-bottom:1px solid var(--line);margin-inline:-20px}
+header.top .brand{display:flex;align-items:center;gap:8px;font:800 19px var(--body);letter-spacing:-.02em}
+header.top img{height:22px;width:auto}
+header.top a.pill{font:700 14px var(--body);color:#fff;background:var(--ink);border-radius:999px;padding:8px 16px;text-decoration:none}
+h1{font:800 clamp(2rem,6.4vw,3.1rem)/1.06 var(--body);letter-spacing:-.035em;margin:14px 0 12px;text-wrap:balance}
+.dek{font-size:1.15rem;color:var(--muted);margin:0 0 18px;text-wrap:balance}
+.top-shot{margin:6px 0 4px;background:var(--wash);border-radius:16px;overflow:hidden}
+.top-shot img,.shot img{width:100%;height:auto;display:block;aspect-ratio:1/1;object-fit:cover}
+.hero img{width:100%;height:auto;display:block;border-radius:16px;aspect-ratio:4/3;object-fit:cover}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:6px;border-radius:16px;overflow:hidden;margin:6px 0 4px}
+.split img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;display:block}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0 4px}
+.chips span{background:var(--wash);border-radius:12px;padding:10px 12px;font-weight:700;font-size:15px;line-height:1.3}
+.chips span::before{content:"\2713";color:var(--ok);margin-right:6px}
+.shot{position:relative;margin:14px 0 8px;border-radius:16px;overflow:hidden;background:var(--wash)}
+.card{position:absolute;left:12px;right:12px;bottom:12px;background:rgba(255,255,255,.96);color:var(--ink);border-radius:14px;
+padding:10px 14px;box-shadow:0 8px 24px rgba(0,0,0,.18);display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:center}
+.card .dot{grid-row:span 2;width:30px;height:30px;border-radius:50%;background:var(--orange);display:grid;place-items:center}
+.card .dot svg{width:16px;height:16px}
+.card b{font-size:13px;letter-spacing:.02em}
+.card span{font-size:15px;line-height:1.35}
+.badges{position:absolute;left:12px;right:12px;bottom:12px;display:flex;flex-wrap:wrap;gap:6px}
+.logos{margin:14px 0 8px;background:var(--wash);border-radius:16px;padding:22px 14px}
+.appgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:420px;margin:0 auto}
+.app{aspect-ratio:1/1;border-radius:50%;display:grid;place-items:center;padding:24%;background:radial-gradient(circle at 35% 30%,#ffffff,#dfe3e8 75%);box-shadow:inset 0 -6px 14px rgba(23,25,28,.08),0 10px 24px -18px rgba(23,25,28,.5)}
+.app svg,.app img{width:100%;height:auto;display:block}
+.app .txt{font-weight:700;font-size:.75rem;color:var(--ink)}
+.badges.apps{gap:5px}.badges.apps span{font-size:12px;padding:5px 10px}
+.badges span{background:rgba(255,255,255,.96);color:var(--ink);font-weight:800;font-size:13px;border-radius:999px;padding:6px 12px;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.reason{padding-block:24px;border-top:1px solid var(--line)}
+.reason h2{font:800 clamp(1.35rem,4vw,1.7rem)/1.2 var(--body);letter-spacing:-.02em;margin:0 0 8px;text-wrap:balance;display:flex;gap:12px;align-items:flex-start}
+.reason h2 .n{flex:0 0 auto;width:1.6em;height:1.6em;border-radius:50%;background:var(--orange);color:#fff;font-size:.8em;display:grid;place-items:center;margin-top:.05em}
+.reason p,.intro p{margin:0 0 12px}
+.offer{background:var(--wash);border-radius:16px;padding:22px 20px;margin:12px 0 22px;text-align:center}
+.offer .kick{font:800 13px var(--body);letter-spacing:.08em;color:var(--orange);margin:0 0 6px;text-transform:uppercase}
+.offer p{margin:0 auto 12px;max-width:34em}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:4px 0 16px}
+.gallery figure{margin:0;background:#fff;border-radius:12px;padding:8px 6px;text-align:center;font-weight:700;font-size:14px}
+.gallery img{width:100%;height:auto;aspect-ratio:1/1;object-fit:contain;display:block}
+.btn{display:inline-block;background:var(--orange);color:#fff;font:800 17px var(--body);text-decoration:none;border-radius:999px;padding:14px 26px;box-shadow:0 6px 18px rgba(255,106,26,.28)}
+.btn:focus-visible,.pill:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.tw{overflow-x:auto;margin:10px 0 6px}
+table{border-collapse:collapse;width:100%;min-width:420px;font-size:15px}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:center}
+th:first-child,td:first-child{text-align:left}
+th:nth-child(2),td:nth-child(2){background:#fff3ea;font-weight:700}
+.yes{color:var(--ok);font-weight:800}.no{color:#b9c1c8}
+.cmp h2{font:800 clamp(1.35rem,4vw,1.7rem)/1.2 var(--body);letter-spacing:-.02em;margin:24px 0 4px}
+footer{color:var(--muted);font-size:14px;text-align:center;padding-block:28px 40px}
+footer a{color:inherit}
+@media (max-width:420px){body{font-size:17px}.wrap{padding-inline:16px}.chips span{font-size:14px}}
+</style></head><body>
+<div class="wrap">
+<header class="top"><span class="brand"><img src="/img/msmark.png" alt="" width="22" height="22">moonshot</span></header>
+
+<h1>5 reasons why busy dads reach for Moonshot</h1>
+
+<div class='split'><img src='/img/speaks-hero.webp' alt='A man wearing the Moonshot earpiece' width='1080' height='1080'><img src='/img/lst-dad2.webp' alt='A dad wearing the Moonshot earpiece' width='1080' height='1080'></div><div class='chips'><span>Speaks up before you ask</span><span>Writes and sends your replies</span><span>Hands-free, phone stays in your pocket</span><span>Backed by Y Combinator</span></div>
+<p>Between work and home, the things you said yes to in passing slip, and you find out too late. Moonshot is a personal AI assistant you wear on your ear, and it speaks up before you have to ask.</p><section class='cmp'><h2><span>Why not your phone? Or AirPods?</span></h2><p>Your phone waits for you to pick it up. AirPods wait for you to ask.</p><div class='tw'><table><tr><th></th><th>Moonshot</th><th>Your phone</th><th>AirPods with Siri</th></tr><tr><td>Hears your day</td><td><span class='yes'>✓</span></td><td><span class='no'>✗</span></td><td><span class='no'>✗</span></td></tr><tr><td>Speaks up before you ask</td><td><span class='yes'>✓</span></td><td><span class='no'>✗</span></td><td><span class='no'>✗</span></td></tr><tr><td>Writes your replies</td><td><span class='yes'>✓</span></td><td><span class='yes'>✓</span></td><td><span class='no'>✗</span></td></tr><tr><td>Hands-free, out loud</td><td><span class='yes'>✓</span></td><td><span class='no'>✗</span></td><td><span class='yes'>✓</span></td></tr><tr><td>Answers in your ear</td><td><span class='yes'>✓</span></td><td><span class='no'>✗</span></td><td><span class='yes'>✓</span></td></tr></table></div></section><section class='reason'><h2><span class='n'>1</span><span>Nobody has to type in what was said</span></h2><p>Your kid says practice moved to Thursday. Your boss mentions he needs the numbers by Friday. Moonshot is on your ear when it&#x27;s said, so nobody has to type it in or tell it.</p><figure class='shot'><img src='/img/lst-office.webp' alt='A dad wearing Moonshot, laughing with coworkers over coffee' width='1080' height='1080' loading='lazy'></figure></section><section class='reason'><h2><span class='n'>2</span><span>You hear what needs you while there&#x27;s time</span></h2><p>When something needs you, Moonshot tells you in your ear while there&#x27;s time to act.</p><figure class='shot'><img src='/img/lst-car.webp' alt='A dad driving with Moonshot on his ear' width='1080' height='1080' loading='lazy'><div class='card'><span class='dot'><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M6 9a6 6 0 0 1 12 0c0 4-4 5-4 9a3 3 0 0 1-6 0"/></svg></span><b>Moonshot</b><span>Practice moved to 5:30. Want me to tell Sarah you&#x27;ve got pickup?</span></div></figure></section><div class='offer'><p class='kick'>Founding batch of 200</p><p>Everyone in it keeps the lowest price it'll ever be, with a full refund any time before it ships.</p><p><a class='btn' href='https://moonshot.computer/a'>Reserve yours risk-free</a></p></div><section class='reason'><h2><span class='n'>3</span><span>Replies go out without you leaving the game</span></h2><p>A client emails during your son&#x27;s game. Moonshot has the reply written and asks if it should send it. You say yes and keep watching.</p><figure class='shot'><img src='/img/lst-bleachers.webp' alt='A dad at his son&#x27;s game wearing Moonshot' width='1080' height='1080' loading='lazy'><div class='card'><span class='dot'><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M6 9a6 6 0 0 1 12 0c0 4-4 5-4 9a3 3 0 0 1-6 0"/></svg></span><b>Moonshot</b><span>Drafted to Dana: “Tomorrow at 3 works. Talk then.” Send it?</span></div></figure></section><section class='reason'><h2><span class='n'>4</span><span>Your hands stay free for your kids</span></h2><p>You talk to it out loud, and it answers in your ear. Carry the groceries, push the swing, and take care of what came up.</p><figure class='shot'><img src='/img/lst-groceries.webp' alt='A dad carrying groceries and his toddler, wearing Moonshot' width='1080' height='1080' loading='lazy'></figure></section><section class='reason'><h2><span class='n'>5</span><span>Work stops following you home</span></h2><p>Moonshot lets what can wait sit until morning. It speaks up when something needs you, so at dinner you&#x27;re all there.</p><figure class='shot'><img src='/img/lst-blocks.webp' alt='A dad building a block tower with his son, wearing Moonshot' width='1080' height='1080' loading='lazy'></figure></section><section class='reason'><h2><span>Reserve yours at the lowest price it&#x27;ll ever be, risk-free</span></h2><p>There&#x27;s only a founding batch of 200. Everybody in it keeps that price. You can get a full refund anytime before it ships in December.</p><p>They&#x27;re backed by Y Combinator, the same program behind Airbnb, Stripe and DoorDash.</p><p>Nothing you said yes to gets missed. That&#x27;s the only thing we promise.</p><div class='offer'><div class='gallery'><figure><img src='/img/p-orange.webp' alt='' width='1080' height='1080' loading='lazy'><figcaption>Orange</figcaption></figure><figure><img src='/img/p-black.webp' alt='' width='1080' height='1080' loading='lazy'><figcaption>Black</figcaption></figure><figure><img src='/img/p-blue.webp' alt='' width='1080' height='1080' loading='lazy'><figcaption>Blue</figcaption></figure></div><p><a class='btn' href='https://moonshot.computer/a'>Reserve yours risk-free</a></p></div></section>
+<footer>Moonshot · <a href="https://moonshot.computer/privacy">Privacy</a> · <a href="https://moonshot.computer/contact">Contact</a></footer>
+</div></body></html>
