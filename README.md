@@ -22,21 +22,26 @@ Two changes, then one fix. Ship only the files listed; don't redeploy anything e
 
 ### 2. New: three listicle pages (pre-landers for the ads)
 
-Short articles that sit between the ad and /a: they explain Moonshot first, then send people to /a to order. Every
-button on them goes to `https://moonshot.computer/a`. They're `noindex`, so they stay out of search.
+Short articles that sit between the ad and /a: they explain Moonshot first, then send people to /a to order. They're
+`noindex`, so they stay out of search. All three live in one `listicle/` folder:
 
-| Folder | Suggested URL | Page |
+| Id | Folder and URL | Page |
 |---|---|---|
-| `g/` | moonshot.computer/**g** | "7 reasons why you should never set a reminder again" |
-| `i/` | moonshot.computer/**i** | "The earpiece that speaks up before you ask: 5 things it does that your phone can't" |
-| `h/` | moonshot.computer/**h** | "5 reasons why busy dads reach for Moonshot" |
+| LST-001 | `listicle/never-set-a-reminder/` → moonshot.computer/listicle/never-set-a-reminder | "7 reasons why you should never set a reminder again" |
+| LST-002 | `listicle/phone-cant/` → moonshot.computer/listicle/phone-cant | "The earpiece that speaks up before you ask: 5 things it does that your phone can't" |
+| LST-003 | `listicle/busy-dads/` → moonshot.computer/listicle/busy-dads | "5 reasons why busy dads reach for Moonshot" |
 
-**Upload:** `g/index.html`, `h/index.html`, `i/index.html`, plus these 14 new images in `img/`:
+**Upload:** the three `listicle/<slug>/index.html` files, plus these 14 new images in `img/`:
 `lst-bleachers.webp`, `lst-blocks.webp`, `lst-car.webp`, `lst-couch-phone.webp`, `lst-dad2.webp`,
 `lst-dinner.webp`, `lst-groceries.webp`, `lst-hand-palm.webp`, `lst-hand.webp`, `lst-office.webp`,
 `lst-pickup.webp`, `lst-talk.webp`, `lst-talking.webp`, `lst-walk.webp`.
 They also use images already live (`speaks-hero.webp`, `speaks-close.webp`, `p-orange.webp`, `p-black.webp`,
-`p-blue.webp`, `msmark.png`). If you serve them at other URLs, tell James so the ads point to the right place.
+`p-blue.webp`, `msmark.png`). Keep these exact URLs; the ads will point at them.
+
+**Tracking.** Put them up the same way as /a, so the site adds the same Meta pixel it adds to /a (the files here
+carry none; don't add a second copy, or every visit counts twice). Every button already goes to
+`https://moonshot.computer/a` and carries the visitor's `fbclid` and `utm_*` along, so a purchase on /a still traces
+back to the ad.
 
 ### 3. Fix: /e and /contact are swapped on the live site
 
@@ -55,7 +60,7 @@ one. Serve `e/index.html` (the "Laugh with it." page, with `vid/e-hero.mp4`) at 
 | `lp-02/` | moonshot.computer/**c** | Working dads |
 | `lp-03/` | moonshot.computer/**d** | Moms |
 | `contact/` | moonshot.computer/contact | Contact page. **Live /contact still shows the old page (fix 3).** |
-| `g/`, `h/`, `i/` | not live yet | The listicles above (change 2). |
+| `listicle/*/` | not live yet | The listicles above (change 2). |
 
 The `lp-0x` folder names don't match their live paths (/b, /c, /d); keep the mapping above.
 
@@ -70,13 +75,12 @@ The `lp-0x` folder names don't match their live paths (/b, /c, /d); keep the map
 
 Every page's Pre-order button must go to the live Stripe checkout, and every page needs the live Meta pixel and
 conversion events (Purchase and InitiateCheckout), the same as /a. The ad sets optimize for Purchase. The listicles
-have no checkout of their own; they only link to /a, but they still need the Meta pixel (PageView) so the ads can
-be measured on them.
+have no checkout of their own; they need the same pixel as /a (see change 2).
 
 ## Editing
 
 - `/a` (root `index.html`) is edited directly in this repo. It is not generated.
-- `/g`, `/h`, `/i` are generated from `coldoo/creative-strategy` (`work/LP-2026-10-06-listicles/build_pages.py`,
+- The `listicle/` pages are generated from `coldoo/creative-strategy` (`work/LP-2026-10-06-listicles/build_pages.py`,
   from each page's `copy.md`).
 - `/e`, `/f`, the `lp-0x` pages and `/contact` are generated from `coldoo/creative-strategy`
   (`work/LP-2026-10-02/site/`) and exported here with `export_repo.py`. The export never touches the root page or
