@@ -38,10 +38,10 @@ Short articles that sit between the ad and /a: they explain Moonshot first, then
 They also use images already live (`speaks-hero.webp`, `speaks-close.webp`, `p-orange.webp`, `p-black.webp`,
 `p-blue.webp`, `msmark.png`). Keep these exact URLs; the ads will point at them.
 
-**Tracking.** Put them up the same way as /a, so the site adds the same Meta pixel it adds to /a (the files here
-carry none; don't add a second copy, or every visit counts twice). Every button already goes to
-`https://moonshot.computer/a` and carries the visitor's `fbclid` and `utm_*` along, so a purchase on /a still traces
-back to the ad.
+**Tracking (done separately, by whoever runs the pixel).** The files here carry no Meta pixel. Once the pages are
+live, the same Meta pixel as /a (id 1897318591235781, PageView) goes on all three listicle URLs, once each, so every
+visit counts once. Every button already goes to `https://moonshot.computer/a` and carries the visitor's `fbclid` and
+`utm_*` along, so a purchase on /a still traces back to the ad.
 
 ### 3. Fix: /e and /contact are swapped on the live site
 
