@@ -4,7 +4,24 @@ Static pages for moonshot.computer. Each folder is the URL it serves; every page
 (CSS and JS inline, no build step) and the pages share `/img` and `/vid`. On the live site these files sit under
 `/landing-pages-oct2/`, so keep the folder layout as it is here.
 
-## To upload now (7 Oct)
+## To upload now (10 Oct): the new offer section
+
+**Upload 6 files:** `index.html` (/a), `f/index.html` (/f), `e/index.html` (/e), `lp-01/index.html` (/b),
+`lp-02/index.html` (/c), `lp-03/index.html` (/d). No new images; the color photos (`img/p-orange.webp`,
+`p-blue.webp`, `p-black.webp`) are already live.
+
+What changed, the same on all six pages: the offer box now reads Jalapeño, then "Everything included in your order",
+then two cards side by side, **Single** $99 (was $150, selected by default) and **Couple Set** $179 (was $300), then
+one color row per earpiece (the second row shows only for the Couple Set), then the Pre-order button. The quantity
+stepper and the old price line are gone.
+
+**The checkout has to match before this goes live (Dylan's side, in the site's own code).** The button now sends
+`data-qty` 1 or 2, `data-color` (earpiece 1) and `data-color-2` (earpiece 2). Today's checkout charges $99 x qty and
+takes one color, so a Couple Set would be charged $198 with one color. The Couple Set must use Stripe price
+`price_1UPBLSCz1pX14wUGfCxSKnQV` ($179, lookup key `jalapeno_couple_set_179`) at quantity 1, and pass the second
+color to the order.
+
+## Still to upload, if not done yet (7 Oct)
 
 Two changes, then one fix. Ship only the files listed; don't redeploy anything else.
 
@@ -85,3 +102,5 @@ have no checkout of their own; they need the same pixel as /a (see change 2).
 - `/e`, `/f`, the `lp-0x` pages and `/contact` are generated from `coldoo/creative-strategy`
   (`work/LP-2026-10-02/site/`) and exported here with `export_repo.py`. The export never touches the root page or
   `vid/uni-hero.mp4`.
+- The offer section on all six pages is patched in after export by
+  `work/LP-2026-10-02/site/offer_v2.py` (creative-strategy); re-run it on each page after any re-export.

@@ -1052,6 +1052,31 @@ body{overscroll-behavior-x:none}
 @media (max-width:640px){.hero h1{font-size:clamp(2.6rem,12vw,3.4rem)}}
 .meet6 .tiles4{margin-top:8px}
 @media (max-width:640px){.meet6 .ustage{height:clamp(260px,78vw,360px)}.meet6 .uprod{width:clamp(170px,52vw,240px)}}
+
+/* offer v2 (10 Oct): plan cards + per-device colors */
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.plan{display:grid;grid-template-columns:auto 1fr;gap:2px 8px;align-items:center;width:100%;text-align:left;font:inherit;color:var(--ink);
+background:rgba(255,255,255,.75);border:1.5px solid rgba(23,25,28,.12);border-radius:16px;padding:10px 12px;cursor:pointer;min-width:0}
+.plan .dot{width:18px;height:18px;border-radius:50%;border:2px solid rgba(23,25,28,.3);display:grid;place-items:center}
+.plan[aria-checked="true"] .dot{border-color:var(--orange)}
+.plan[aria-checked="true"] .dot::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--orange)}
+.plan .pn{font-weight:600;font-size:1rem;letter-spacing:-.01em;white-space:nowrap}
+.plan .pp{grid-column:1/-1;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;line-height:1.05;margin-top:6px}
+.plan .pp b{font-family:var(--display);font-weight:500;font-size:1.6rem;letter-spacing:-.04em;color:#000}
+.plan .pp s{font-size:.95rem;color:#5d656e;font-weight:500;text-decoration-thickness:1.5px}
+.plan .ps{grid-column:1/-1;font-size:.8rem;color:var(--slate)}
+.plan[aria-checked="true"]{border-color:var(--orange);background:#fff4ec;box-shadow:0 10px 26px -18px rgba(242,102,29,.8)}
+.plan:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.dev{display:grid;gap:6px}
+.dev[hidden],.dev .dl[hidden]{display:none}
+.dev .dl{font-size:.82rem;color:var(--slate);font-weight:500}
+.sw{display:flex;gap:8px;flex-wrap:wrap}
+.sw button{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:.9rem;color:var(--ink);background:rgba(255,255,255,.75);
+border:1.5px solid rgba(23,25,28,.12);border-radius:999px;padding:6px 12px 6px 6px;cursor:pointer}
+.sw button i{width:20px;height:20px;border-radius:50%;display:block}
+.sw button[aria-pressed="true"]{border-color:var(--ink)}
+.sw button:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+@media (max-width:360px){.plan{padding:9px 10px}.plan .pp b{font-size:1.4rem}.plan .pp s{font-size:.85rem}.sw button{padding:5px 10px 5px 5px;font-size:.85rem}}
 </style></head>
 <body class="p-speaks">
 <div class="offerbar"><span class="long"><b>Founder batch:</b> $99 (retail $150), with your first year of Jalapeño included.<a href="#offer">Claim Founder Offer &rarr;</a></span><span class="short">Founder price $99 (retail $150) · First year included</span></div>
@@ -1100,16 +1125,17 @@ body{overscroll-behavior-x:none}
     <div class="thumbs" id="thumbs"><button type="button" data-i="1" aria-label="Show Saturday pancakes" aria-current="false"><img src="/img/dlife2.webp" alt="" loading="lazy"></button><button type="button" data-i="2" aria-label="Show On a morning run" aria-current="false"><img src="/img/life1.webp" alt="" loading="lazy"></button><button type="button" data-i="3" aria-label="Show Brunch with friends" aria-current="false"><img src="/img/mlife4.webp" alt="" loading="lazy"></button><button type="button" data-i="4" aria-label="Show Walking the dog" aria-current="false"><img src="/img/life4.webp" alt="" loading="lazy"></button><button type="button" data-i="5" aria-label="Show Baking with her daughter" aria-current="false"><img src="/img/mlife3.webp" alt="" loading="lazy"></button><button type="button" data-i="6" aria-label="Show Coffee with a friend" aria-current="false"><img src="/img/life6.webp" alt="" loading="lazy"></button><span class="sep" aria-hidden="true"></span><button type="button" class="prodt" data-c="orange" aria-label="Show Jalapeño in orange" aria-current="true"><img src="/img/p-orange.webp" alt="" loading="lazy"></button><button type="button" class="prodt" data-c="blue" aria-label="Show Jalapeño in blue" aria-current="false"><img src="/img/p-blue.webp" alt="" loading="lazy"></button><button type="button" class="prodt" data-c="black" aria-label="Show Jalapeño in black" aria-current="false"><img src="/img/p-black.webp" alt="" loading="lazy"></button></div>
   </div>
   <div class="panel2">
-    <div class="head"><div class="stack" style="gap:6px"><span class="urg">Founding batch · <em>190 units left</em></span><h2 class="nm">Jalapeño</h2></div>
-      <div class="pr"><b id="rsv-total">$99</b><s id="rsv-was">$150</s><small id="rsv-dev">1 device</small></div></div>
-    <div class="stack" style="gap:8px"><span class="lbl">Choose your color</span>
-      <div class="colors" role="group" aria-label="Color">
-        <button type="button" id="c-orange" aria-pressed="true" data-c="orange"><i style="background:#f2661d"></i>Orange</button>
-        <button type="button" id="c-blue" aria-pressed="false" data-c="blue"><i style="background:#6f86f0"></i>Blue</button>
-        <button type="button" id="c-black" aria-pressed="false" data-c="black"><i style="background:#26282d"></i>Black</button>
-      </div></div>
-    <div class="qrow"><span class="lbl">Quantity</span><div class="qty"><button type="button" id="q-minus" aria-label="Decrease quantity">−</button><output id="q-val">1</output><button type="button" id="q-plus" aria-label="Increase quantity">+</button></div></div>
+    <div class="head"><div class="stack" style="gap:6px"><span class="urg">Founding batch · <em>190 units left</em></span><h2 class="nm">Jalapeño</h2></div></div>
     <div class="stack" style="gap:8px"><span class="lbl">Everything included in your order</span><ul class="stack3"><li>Jalapeño earpiece in your color</li><li>1 free year of Jalapeño</li><li>Founder price, yours to keep</li><li>Priority shipping for the first batch</li><li>First access to everything we build</li></ul></div>
+    <div class="stack" style="gap:8px"><span class="lbl">Choose your set</span>
+      <div class="plans" role="radiogroup" aria-label="Choose your set">
+        <button type="button" class="plan" role="radio" aria-checked="true" data-qty="1"><span class="dot"></span><span class="pn">Single</span><span class="pp"><b>$99</b><s>$150</s></span><span class="ps">1 earpiece</span></button>
+        <button type="button" class="plan" role="radio" aria-checked="false" data-qty="2"><span class="dot"></span><span class="pn">Couple Set</span><span class="pp"><b>$179</b><s>$300</s></span><span class="ps">2 earpieces</span></button>
+      </div></div>
+    <div class="stack" style="gap:10px"><span class="lbl" id="col-lbl">Choose your colors</span>
+      <div class="dev" data-d="1"><span class="dl">Earpiece 1</span><div class="sw" role="group" aria-label="Earpiece 1 color"><button type="button" data-c="orange"><i style="background:#f2661d"></i>Orange</button><button type="button" data-c="blue"><i style="background:#6f86f0"></i>Blue</button><button type="button" data-c="black"><i style="background:#26282d"></i>Black</button></div></div>
+      <div class="dev" data-d="2"><span class="dl">Earpiece 2</span><div class="sw" role="group" aria-label="Earpiece 2 color"><button type="button" data-c="orange"><i style="background:#f2661d"></i>Orange</button><button type="button" data-c="blue"><i style="background:#6f86f0"></i>Blue</button><button type="button" data-c="black"><i style="background:#26282d"></i>Black</button></div></div>
+    </div>
     <a class="btn" id="rsv-btn" href="#offer">Pre-order Jalapeño now</a>
     <div class="pay6"><img src="/img/pay/visa.svg" alt="Visa" width="38" height="24"><img src="/img/pay/mastercard.svg" alt="Mastercard" width="38" height="24"><img src="/img/pay/amex.svg" alt="American Express" width="38" height="24"><svg viewBox="0 0 48 30" role="img" aria-label="Apple Pay"><rect width="48" height="30" rx="4" fill="#000"/><text x="24" y="19.5" font-family="-apple-system,Segoe UI,sans-serif" font-size="11" font-weight="600" fill="#fff" text-anchor="middle"> Pay</text></svg><img src="/img/pay/discover.svg" alt="Discover" width="38" height="24"><img src="/img/pay/paypal.svg" alt="PayPal" width="38" height="24"><svg viewBox="0 0 48 30" role="img" aria-label="Google Pay"><rect width="48" height="30" rx="4" fill="#fff"/><text x="24" y="19.5" font-family="Arial,sans-serif" font-size="10.5" font-weight="700" text-anchor="middle"><tspan fill="#4285F4">G</tspan><tspan fill="#5f6368"> Pay</tspan></text></svg></div>
     <div class="trustline"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7L4 12l5 5"/><path d="M4 12h11a5 5 0 010 10h-2"/></svg>Full refund anytime before shipping</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>1-year warranty</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h11v9H3zM14 9h4l3 3v3h-7z"/><circle cx="7" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/></svg>Ships December 2026</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Secure checkout</span></div>
@@ -1188,13 +1214,13 @@ body{overscroll-behavior-x:none}
   function setColor(c){color=c;prods.forEach(function(p){p.src='/img/p-'+c+'.webp';p.alt='Jalapeño in '+c;});
     document.querySelectorAll('.colors button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.c===c?'true':'false');});
     document.getElementById('rsv-btn').setAttribute('data-color',c);go(m+m*Math.round((cur()-m)/m)*0);mark();}
-  document.querySelectorAll('.colors button').forEach(function(x){x.addEventListener('click',function(){setColor(x.dataset.c);});});
+  [].forEach.call([],function(x){x.addEventListener('click',function(){setColor(x.dataset.c);});});
   colT.forEach(function(t){t.addEventListener('click',function(){setColor(t.dataset.c);});});
   function render(){document.getElementById('q-val').textContent=qty;
     document.getElementById('rsv-total').textContent=money(99*qty);document.getElementById('rsv-was').textContent=money(150*qty);
     document.getElementById('rsv-dev').textContent=qty+(qty>1?' devices':' device');document.getElementById('rsv-btn').setAttribute('data-qty',qty);}
-  document.getElementById('q-minus').addEventListener('click',function(){qty=Math.max(1,qty-1);render();});
-  document.getElementById('q-plus').addEventListener('click',function(){qty=Math.min(10,qty+1);render();});
+  (document.getElementById('q-minus')||{addEventListener:function(){}}).addEventListener('click',function(){qty=Math.max(1,qty-1);render();});
+  (document.getElementById('q-plus')||{addEventListener:function(){}}).addEventListener('click',function(){qty=Math.min(10,qty+1);render();});
   // step 2: bubbles around the person; two get handled, crossed off and leave; loop
   document.querySelectorAll('.s2').forEach(function(box){
     var bs=[].slice.call(box.querySelectorAll('.s2b')), h=bs.filter(function(b){return b.dataset.h==='1';});
@@ -1232,5 +1258,21 @@ body{overscroll-behavior-x:none}
     lbl.textContent=paused?'Resume listening':'Pause listening';pb.setAttribute('aria-label',(paused?'Resume':'Pause')+' listening in example');
     live.textContent=paused?'Listening paused.':'A little quiet, whenever you want.';});
 })();
+
+  // offer v2 (10 Oct): plan cards set data-qty; one color row per earpiece (data-color, data-color-2)
+  (function(){var btn=document.getElementById('rsv-btn');if(!btn)return;var cols={1:'orange',2:'orange'};
+    function paint(){[1,2].forEach(function(d){var row=document.querySelector('.dev[data-d="'+d+'"]');if(!row)return;
+      row.querySelectorAll('.sw button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.c===cols[d]?'true':'false');});});
+      btn.setAttribute('data-color',cols[1]);btn.setAttribute('data-color-2',cols[2]);
+      document.querySelectorAll('.prod-img').forEach(function(p){p.src='/img/p-'+cols[1]+'.webp';p.alt='Jalapeño in '+cols[1];});}
+    function plan(q){document.querySelectorAll('.plan').forEach(function(p){p.setAttribute('aria-checked',p.dataset.qty==q?'true':'false');});
+      btn.setAttribute('data-qty',q);var two=q==2,r2=document.querySelector('.dev[data-d="2"]');if(r2)r2.hidden=!two;
+      var l=document.getElementById('col-lbl');if(l)l.textContent=two?'Choose your colors':'Choose your color';
+      var d1=document.querySelector('.dev[data-d="1"] .dl');if(d1)d1.hidden=!two;}
+    document.querySelectorAll('.plan').forEach(function(p){p.addEventListener('click',function(){plan(+p.dataset.qty);});});
+    [1,2].forEach(function(d){var row=document.querySelector('.dev[data-d="'+d+'"]');if(!row)return;
+      row.querySelectorAll('.sw button').forEach(function(x){x.addEventListener('click',function(){cols[d]=x.dataset.c;paint();});});});
+    document.querySelectorAll('#thumbs [data-c]').forEach(function(t){t.addEventListener('click',function(){cols[1]=t.dataset.c;paint();});});
+    plan(1);paint();})();
 </script>
 </body></html>
