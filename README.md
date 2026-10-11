@@ -4,6 +4,21 @@ Static pages for moonshot.computer. Each folder is the URL it serves; every page
 (CSS and JS inline, no build step) and the pages share `/img` and `/vid`. On the live site these files sit under
 `/landing-pages-oct2/`, so keep the folder layout as it is here.
 
+## To upload first (11 Oct): /a hero becomes a still image
+
+The /a hero video shows blank in the Facebook and Instagram in-app browsers, which is where ad traffic lands. It is now
+a still photo (the clip's last frame: she wears the earpiece and smiles).
+
+**Upload 1 new image: `img/a-hero.webp`.** Then, on the live /a, replace the hero's `<video class="uvid bv" ...></video>`
+tag (inside `<div class="ubg">`) with this one line, and change nothing else:
+
+```html
+<img class="uvid" src="/landing-pages-oct2/img/a-hero.webp" width="1280" height="720" fetchpriority="high" alt="A woman wearing the Jalapeño earpiece behind her ear, smiling">
+```
+
+`index.html` in this repo already has it, but it also carries the new offer section below, which waits on the
+checkout change. So patch the live /a by hand now, and the full `index.html` goes up later with the offer section.
+
 ## To upload now (10 Oct): the new offer section
 
 **Upload 6 files:** `index.html` (/a), `f/index.html` (/f), `e/index.html` (/e), `lp-01/index.html` (/b),
