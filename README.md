@@ -15,11 +15,15 @@ then two cards side by side, **Single** $99 (was $150, selected by default) and 
 one color row per earpiece (the second row shows only for the Couple Set), then the Pre-order button. The quantity
 stepper and the old price line are gone.
 
-**The checkout has to match before this goes live (Dylan's side, in the site's own code).** The button now sends
-`data-qty` 1 or 2, `data-color` (earpiece 1) and `data-color-2` (earpiece 2). Today's checkout charges $99 x qty and
-takes one color, so a Couple Set would be charged $198 with one color. The Couple Set must use Stripe price
-`price_1UPBLSCz1pX14wUGfCxSKnQV` ($179, lookup key `jalapeno_couple_set_179`) at quantity 1, and pass the second
-color to the order.
+**Checkout change needed, in the same upload (the site's checkout code).** Single works as it does today. For the
+Couple Set, the Pre-order button sends `data-qty="2"`, `data-color` (earpiece 1) and `data-color-2` (earpiece 2).
+The checkout must:
+
+1. Charge **$179** with Stripe price `price_1UPBLSCz1pX14wUGfCxSKnQV` (lookup key `jalapeno_couple_set_179`) at
+   quantity 1, not the $99 price at quantity 2.
+2. Save **both colors** on the order (today only `data-color` is sent to `/api/preorder-checkout`).
+
+Don't put the new pages live until a Couple Set test checkout shows $179 and both colors.
 
 ## Still to upload, if not done yet (7 Oct)
 
