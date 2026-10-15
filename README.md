@@ -4,6 +4,19 @@ Static pages for moonshot.computer. Each folder is the URL it serves; every page
 (CSS and JS inline, no build step) and the pages share `/img` and `/vid`. On the live site these files sit under
 `/landing-pages-oct2/`, so keep the folder layout as it is here.
 
+## To upload now (15 Oct): new listicle LST-005 at /lst-005
+
+A new pre-lander for the ads: "We asked 50+ AI wearable owners what's still missing. Here's what they told us."
+It is `noindex`, so it stays out of search, and every button goes to `https://moonshot.computer/a` (carrying the
+visitor's `fbclid` and `utm_*` along).
+
+**Upload:** `lst-005/index.html`, served at **moonshot.computer/lst-005**, plus 2 new images in `img/`:
+`lst-transcript.webp` and `lst-contractor.webp`. Its other images are already live (`dlife3.webp`, `lst-office.webp`,
+`lst-hand-palm.webp`, `speaks-close.webp`, `speaks-hero.webp`, `p-orange.webp`, `msmark.png`).
+
+**Tracking (done separately, by whoever runs the pixel):** the same Meta pixel as /a (PageView) goes on /lst-005,
+once, like the other listicles.
+
 ## To upload first (11 Oct): /a hero becomes a still image
 
 The /a hero video shows blank in the Facebook and Instagram in-app browsers, which is where ad traffic lands. It is now
@@ -97,6 +110,7 @@ one. Serve `e/index.html` (the "Laugh with it." page, with `vid/e-hero.mp4`) at 
 | `lp-03/` | moonshot.computer/**d** | Moms |
 | `contact/` | moonshot.computer/contact | Contact page. **Live /contact still shows the old page (fix 3).** |
 | `listicle/*/` | not live yet | The listicles above (change 2). |
+| `lst-005/` | moonshot.computer/**lst-005** | LST-005, "We asked 50+ AI wearable owners..." (15 Oct). |
 
 The `lp-0x` folder names don't match their live paths (/b, /c, /d); keep the mapping above.
 
