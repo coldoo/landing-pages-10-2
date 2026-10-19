@@ -4,6 +4,20 @@ Static pages for moonshot.computer. Each folder is the URL it serves; every page
 (CSS and JS inline, no build step) and the pages share `/img` and `/vid`. On the live site these files sit under
 `/landing-pages-oct2/`, so keep the folder layout as it is here.
 
+## Upload first (19 Oct): the free year is gone, a subscription FAQ is added
+
+The founders dropped the free year on 14 Oct, but the live pages still promise it. **Upload these 6 files:**
+`index.html` (/a), `f/index.html` (/f), `e/index.html` (/e), `lp-01/index.html` (/b), `lp-02/index.html` (/c),
+`lp-03/index.html` (/d). No new images.
+
+- The offer list's "1 free year of Jalapeño" is now "Founding batch beta access".
+- The top bar and the sticky price bar say "Fully refundable" instead of "First year included"
+  (the long bar: "$99 (retail $150), fully refundable before it ships.").
+- Every FAQ has a new entry, "Is there a subscription?", with no price and no date.
+
+These files also carry the new offer section (10 Oct, below), which waits on the checkout change. If the checkout isn't
+ready, make the same three text changes by hand on the live pages instead.
+
 ## To upload now (15 Oct): new listicle LST-005 at /lst-005
 
 A new pre-lander for the ads: "We asked 50+ AI wearable owners what's still missing. Here's what they told us."
