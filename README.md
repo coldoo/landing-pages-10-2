@@ -10,7 +10,7 @@ The founders dropped the free year on 14 Oct, but the live pages still promise i
 `index.html` (/a), `f/index.html` (/f), `e/index.html` (/e), `lp-01/index.html` (/b), `lp-02/index.html` (/c),
 `lp-03/index.html` (/d). No new images.
 
-- The offer list's "1 free year of Jalapeño" is now "Founding batch beta access".
+- The offer list no longer has "1 free year of Jalapeño" (the line is removed).
 - The top bar and the sticky price bar say "Fully refundable" instead of "First year included"
   (the long bar: "$99 (retail $150), fully refundable before it ships.").
 - Every FAQ has a new entry, "Is there a subscription?", with no price and no date.
