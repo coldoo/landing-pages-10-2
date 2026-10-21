@@ -4,6 +4,17 @@ Static pages for moonshot.computer. Each folder is the URL it serves; every page
 (CSS and JS inline, no build step) and the pages share `/img` and `/vid`. On the live site these files sit under
 `/landing-pages-oct2/`, so keep the folder layout as it is here.
 
+## Upload first (21 Oct): offer bar + sticky CTA on /a and the listicles, and no free year (one upload)
+
+**Upload these 10 files:** `index.html` (/a), `f/index.html`, `e/index.html`, `lp-01/index.html`, `lp-02/index.html`,
+`lp-03/index.html`, `lst-005/index.html`, `listicle/never-set-a-reminder/index.html`, `listicle/phone-cant/index.html`,
+`listicle/busy-dads/index.html`. No new images.
+
+- **New on /a and the 4 listicles (21 Oct):** the dark offer bar at the top ("Founder batch: $99 (retail $150), fully
+  refundable before it ships.") and the sticky price button at the bottom ("$150 $99 · Fully refundable" + Pre-order),
+  the same ones /b /c /d /f have. On /a they go to the offer section; on the listicles, to moonshot.computer/a.
+- **Free year removed (19 Oct, details below)** on /a /b /c /d /e /f.
+
 ## Upload first (19 Oct): the free year is gone, a subscription FAQ is added
 
 The founders dropped the free year on 14 Oct, but the live pages still promise it. **Upload these 6 files:**

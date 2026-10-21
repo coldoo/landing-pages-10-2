@@ -1355,6 +1355,8 @@ border:1.5px solid rgba(23,25,28,.12);border-radius:999px;padding:6px 12px 6px 6
 @media (max-width:360px){.plan{padding:9px 10px}.plan .pp b{font-size:1.4rem}.plan .pp s{font-size:.85rem}.sw button{padding:5px 10px 5px 5px;font-size:.85rem}}
 </style></head>
 <body class="p-adhd">
+<div class="offerbar"><span class="long"><b>Founder batch:</b> $99 (retail $150), fully refundable before it ships.<a href="#offer">Claim Founder Offer &rarr;</a></span><span class="short">Founder price $99 (retail $150) · Fully refundable</span></div>
+
 <div class="navwrap"><header class="nav"><a class="logo" href="https://moonshot.computer"><img src="/img/msmark.png" alt="" width="24" height="24">moonshot</a>
   <nav class="links"><a class="txt" href="https://moonshot.computer/privacy">Privacy</a><a class="txt" href="/contact">Contact</a><a class="btn small" href="#offer">Pre-order</a></nav></header></div>
 
@@ -1561,6 +1563,7 @@ border:1.5px solid rgba(23,25,28,.12);border-radius:999px;padding:6px 12px 6px 6
     live.textContent=paused?'Listening paused.':'A little quiet, whenever you want.';});
 })();
 </script>
+<div class="sticky" id="sticky"><span class="p"><s>$150</s> $99 · Fully refundable</span><a class="btn small" href="#offer">Pre-order</a></div>
 <script>
 (function(){
   // moments carousel
@@ -1607,5 +1610,10 @@ border:1.5px solid rgba(23,25,28,.12);border-radius:999px;padding:6px 12px 6px 6
       row.querySelectorAll('.sw button').forEach(function(x){x.addEventListener('click',function(){cols[d]=x.dataset.c;paint();});});});
     document.querySelectorAll('#thumbs [data-c]').forEach(function(t){t.addEventListener('click',function(){cols[1]=t.dataset.c;paint();});});
     plan(1);paint();})();
+
+  // sticky bar (21 Oct, from the landers): it steps aside while the offer itself is on screen
+  (function(){var sb=document.getElementById('sticky'),offer=document.getElementById('offer');
+    function onOffer(){if(!sb||!offer)return;var r=offer.getBoundingClientRect(),h=window.innerHeight;sb.classList.toggle('away',r.top<h*0.8&&r.bottom>h*0.2);}
+    window.addEventListener('scroll',onOffer,{passive:true});window.addEventListener('resize',onOffer);onOffer();})();
 </script>
 </body></html>
