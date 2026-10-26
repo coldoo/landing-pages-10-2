@@ -20,7 +20,7 @@ h1{font:600 clamp(30px,8vw,40px)/1.08 Georgia,"Times New Roman",serif;letter-spa
 h2{font:600 clamp(25px,6.5vw,31px)/1.12 Georgia,"Times New Roman",serif;margin:0 0 6px}
 .sub{color:var(--muted);margin:0}
 .coach{display:grid;grid-template-columns:118px 1fr;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:12px;margin:18px 0 0;box-shadow:0 14px 34px rgba(90,60,30,.08)}
-.port{height:140px;border-radius:16px;background:url(img/call-sky.webp) center/cover;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.port{height:140px;border-radius:16px;background:url(/quiz/img/call-sky.webp) center/cover;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
 .port img{height:94%;width:auto}
 .coach small{display:block;font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
 .coach b{display:block;font:600 22px/1.15 Georgia,serif;margin:2px 0 8px}
@@ -85,12 +85,12 @@ details[open] summary::after{content:"–"}details p{color:var(--muted);margin:8
 </head>
 <body>
 <div class="w">
-  <div class="top"><img src="img/msmark.png" alt="">moonshot</div>
+  <div class="top"><img src="/quiz/img/msmark.png" alt="">moonshot</div>
 
   <span class="pill">Your plan is ready</span>
   <h1 id="h1">Steve Jobs hears your meetings. Then tells you what you missed.</h1>
   <p class="sub" id="sub">Samantha listens on your iPhone. Steve coaches you on what actually happened, so you walk into the next one ready.</p>
-  <div class="coach"><div class="port"><img id="portImg" src="img/legend-steve.webp" alt=""></div>
+  <div class="coach"><div class="port"><img id="portImg" src="/quiz/img/legend-steve.webp" alt=""></div>
     <div><small>Your plan · <span id="goalShort">your business</span></small><b id="coachName">Steve Jobs</b>
       <dl><div><dt>Focus: </dt><dd id="dFocus">Doing what you said you'd do</dd></div><div><dt>Steps in: </dt><dd id="dWhen">Before big moments</dd></div><div><dt>Style: </dt><dd id="dTone">Straight with you</dd></div></dl></div></div>
   <a class="btn" href="https://moonshot.computer/pay/checkout">Start my plan · $25/mo</a>
@@ -139,10 +139,10 @@ details[open] summary::after{content:"–"}details p{color:var(--muted);margin:8
   <section>
     <h2>Why a legend beside you works.</h2>
     <div class="proof">
-      <div class="st"><img src="squad/img/logos/stanford.png" alt="Stanford University"><p class="k">Working beside others</p><b>48–64% longer</b>
+      <div class="st"><img src="/quiz/squad/img/logos/stanford.png" alt="Stanford University"><p class="k">Working beside others</p><b>48–64% longer</b>
         <p>People who felt they were working with others stuck with a hard task longer, even alone.</p>
         <div class="bars"><div><span>Alone</span><i style="--w:61%"></i></div><div class="us"><span>Together</span><i style="--w:100%"></i></div></div><small>Stanford University, 2014</small></div>
-      <div class="st"><img src="squad/img/logos/msu.png" alt="Michigan State University"><p class="k">Beside someone stronger</p><b>2× longer</b>
+      <div class="st"><img src="/quiz/squad/img/logos/msu.png" alt="Michigan State University"><p class="k">Beside someone stronger</p><b>2× longer</b>
         <p>Paired with a slightly stronger partner, people kept going about twice as long.</p>
         <div class="bars"><div><span>Alone · 10.6 min</span><i style="--w:48%"></i></div><div class="us"><span>Paired · 21.9 min</span><i style="--w:100%"></i></div></div><small>Michigan State University, 2012</small></div>
       <div class="slim"><span class="ycl">Y</span><span><b>Backed by Y Combinator</b>The accelerator behind Airbnb, Stripe and Dropbox.</span></div>
@@ -160,7 +160,7 @@ details[open] summary::after{content:"–"}details p{color:var(--muted);margin:8
   </section>
 
   <section class="close">
-    <div class="port big"><img class="portc" src="img/legend-steve.webp" alt=""></div>
+    <div class="port big"><img class="portc" src="/quiz/img/legend-steve.webp" alt=""></div>
     <h2>Your plan with <span class="cf">Steve</span> is ready.</h2>
     <p class="sub">$25/mo, locked for 12 months. <span class="cf">Steve</span> starts with your next meeting.</p>
     <a class="btn" href="https://moonshot.computer/pay/checkout">Start my plan · $25/mo</a>
@@ -211,8 +211,8 @@ const fill=t=>t.replaceAll("{c}",NAME[c]).replaceAll("{f}",FIRST(c));
 const list=a=>a.length<2?a.join(""):a.slice(0,-1).join(", ")+" and "+a[a.length-1];
 document.getElementById("h1").textContent=fill(HEAD[g][0]);
 document.getElementById("sub").textContent=fill(HEAD[g][1]);
-document.getElementById("portImg").src="img/legend-"+c+".webp";
-document.getElementById("portImg").onerror=function(){this.onerror=null;this.src="img/face-"+c+".jpg";this.style.borderRadius="50%";this.style.height="70%";this.style.marginBottom="15%"};
+document.getElementById("portImg").src="/quiz/img/legend-"+c+".webp";
+document.getElementById("portImg").onerror=function(){this.onerror=null;this.src="/quiz/img/face-"+c+".jpg";this.style.borderRadius="50%";this.style.height="70%";this.style.marginBottom="15%"};
 document.getElementById("coachName").textContent=NAME[c];
 // Build counts from the internal brain (legend-sources.md, 25 Oct). Rules: counts and years OK; hours only for Obama;
 // "built from their public record", never endorsed; Curie and Angelou not built, so they fall back to cast totals.
@@ -228,7 +228,7 @@ const tr=TRAIN[c]||CAST;
 document.getElementById("trH").textContent=TRAIN[c]?"Built from "+FIRST(c)+"'s public record.":"Every legend is built from their public record.";
 document.getElementById("train").innerHTML=tr.map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join("");
 document.getElementById("srcs").textContent=SRCS[c]||"";
-document.querySelectorAll(".portc").forEach(e=>{e.src="img/legend-"+c+".webp";e.onerror=function(){this.onerror=null;this.src="img/face-"+c+".jpg"}});
+document.querySelectorAll(".portc").forEach(e=>{e.src="/quiz/img/legend-"+c+".webp";e.onerror=function(){this.onerror=null;this.src="/quiz/img/face-"+c+".jpg"}});
 document.getElementById("goalShort").textContent=GOAL[g];
 document.getElementById("dFocus").textContent=FOCUS[q.get("st")]||FOCUS.follow;
 const w=(q.get("w")||"before").split(",").filter(k=>WHEN[k]).map((k,i)=>i?WHEN[k].toLowerCase():WHEN[k]);
@@ -238,11 +238,11 @@ document.getElementById("seeH").textContent="See what "+FIRST(c)+" catches.";
 document.getElementById("incl").textContent=NAME[c]+(L.length>1?", "+list(L.slice(1).map(FIRST)):"");
 document.querySelectorAll(".cf").forEach(e=>e.textContent=FIRST(c));document.querySelectorAll(".cn").forEach(e=>e.textContent=NAME[c]);
 const rail=document.getElementById("rail");
-rail.innerHTML=SC[g].map(([i,lab,heard,line],n)=>`<div class="scn" data-n="${n}"><img src="scenes/s${i}.jpg" alt="">
+rail.innerHTML=SC[g].map(([i,lab,heard,line],n)=>`<div class="scn" data-n="${n}"><img src="/quiz/scenes/s${i}.jpg" alt="">
  <div class="lab"><i></i>Samantha heard · ${lab}</div>
  <div class="ov"><div class="heard"><small>What was said</small>${heard.map(h=>`<p>${h}</p>`).join("")}</div>
  <button class="ask" type="button">What did I miss?</button>
- <div class="msg"><img src="img/face-${c}.jpg" alt=""><div><b>${NAME[c]}</b>${line}</div></div></div></div>`).join("");
+ <div class="msg"><img src="/quiz/img/face-${c}.jpg" alt=""><div><b>${NAME[c]}</b>${line}</div></div></div></div>`).join("");
 rail.addEventListener("click",e=>{const b=e.target.closest(".ask");if(b)b.closest(".scn").classList.add("on")});
 const dots=document.getElementById("dots");dots.innerHTML=SC[g].map((_,i)=>`<i class="${i?"":"on"}"></i>`).join("");
 rail.addEventListener("scroll",()=>{const n=Math.round(rail.scrollLeft/(rail.firstElementChild.offsetWidth+12));[...dots.children].forEach((d,i)=>d.classList.toggle("on",i===n))});

@@ -174,13 +174,13 @@ details p{color:var(--muted);margin:8px 0 0;font-size:15.5px}
 .convo{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:12px 14px;margin-top:8px}
 .iph{position:relative;width:min(270px,78%);aspect-ratio:9/18.5;margin:14px auto 0;border-radius:38px;border:7px solid #1b1b1d;box-shadow:0 18px 40px rgba(60,40,20,.25);overflow:hidden;color:#fff;font-family:-apple-system,"SF Pro Text","Segoe UI",Arial,sans-serif}
 .iph .isl{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:76px;height:22px;border-radius:12px;background:#000;z-index:3}
-.iph.call{background:url(img/call-sky.webp) center/cover;text-align:center;padding:48px 12px 0}
+.iph.call{background:url(/quiz/img/call-sky.webp) center/cover;text-align:center;padding:48px 12px 0}
 .ctop{position:absolute;top:11px;left:20px;font-size:12px;font-weight:700}
 .duo{display:flex;justify-content:center;gap:4px}.duo figure{margin:0}.duo img{height:92px;width:auto}.duo figcaption{font-size:10px;font-weight:700}
 .sam{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.25);border-radius:99px;padding:3px 9px 3px 3px;font-size:10.5px;font-weight:700;margin:8px 0 8px}.sam img{width:16px;height:16px;border-radius:50%}
 .iph .said{font:400 14.5px/1.3 Georgia,serif;opacity:.55;margin:6px 4px}.iph .said.on{opacity:1}.iph .said small{display:block;font:700 9.5px -apple-system,Arial,sans-serif;opacity:.8;margin-bottom:2px}
 .cbtn{position:absolute;bottom:16px;left:0;right:0;display:flex;justify-content:center;gap:12px}.cbtn i{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.35)}.cbtn i.end{background:#ff3b30}
-.iph.lock{background:url(img/hero-ridges.webp) center/cover;padding:52px 12px 0}
+.iph.lock{background:url(/quiz/img/hero-ridges.webp) center/cover;padding:52px 12px 0}
 .quote2{font:italic 400 16px/1.3 Georgia,serif;text-align:center;color:#2b2420;margin:6px 6px 14px;text-shadow:0 1px 8px rgba(255,255,255,.6)}
 .noted2{display:flex;align-items:center;gap:8px;background:#111;border-radius:99px;padding:6px 10px 6px 6px}.noted2 img{width:26px;height:26px;border-radius:50%}
 .noted2 span{font-size:12px;font-weight:700;line-height:1.2}.noted2 small{display:block;font-size:9.5px;opacity:.7;font-weight:500}.noted2 b{margin-left:auto;background:#34c759;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:11px}
@@ -191,12 +191,12 @@ details p{color:var(--muted);margin:8px 0 0;font-size:15.5px}
 </head>
 <body>
 <div class="wrap" id="app">
-  <div class="top"><button class="back" id="back" aria-label="Back">‹</button><img src="img/msmark.png" alt=""><span class="brand">moonshot</span></div>
+  <div class="top"><button class="back" id="back" aria-label="Back">‹</button><img src="/quiz/img/msmark.png" alt=""><span class="brand">moonshot</span></div>
   <div class="bar" id="barwrap"><i id="bar"></i></div>
 
   <!-- 0 · landing = first question (Headway / Noom shape) -->
   <section class="screen on" data-step="0">
-        <div class="hero-legends"><img src="img/legend-serena.webp" alt=""><img src="img/legend-steve.webp" alt=""><img src="img/legend-pg.webp" alt=""></div>
+        <div class="hero-legends"><img src="/quiz/img/legend-serena.webp" alt=""><img src="/quiz/img/legend-steve.webp" alt=""><img src="/quiz/img/legend-pg.webp" alt=""></div>
     <span class="pill">⏱ 2-minute quiz</span>
     <h1>Stop deciding alone. Get coached by the legends on your actual day.</h1>
     <p class="sub">Answer a few questions and we'll match you with the legends who'd coach you best.</p>
@@ -239,8 +239,8 @@ details p{color:var(--muted);margin:8px 0 0;font-size:15.5px}
       <p class="sub" id="gotoH" style="margin:0 0 6px">Most people never get someone who's done it to ask.</p>
       <h2>Now imagine they were in the room.</h2>
       <div class="iph call"><div class="isl"></div><div class="ctop">5:30</div>
-        <div class="duo"><figure><img src="img/legend-pg.webp" alt=""><figcaption>Paul Graham</figcaption></figure><figure><img src="img/legend-steve.webp" alt=""><figcaption>Steve Jobs</figcaption></figure></div>
-        <span class="sam"><img src="img/her-warm.webp" alt="">Samantha</span>
+        <div class="duo"><figure><img src="/quiz/img/legend-pg.webp" alt=""><figcaption>Paul Graham</figcaption></figure><figure><img src="/quiz/img/legend-steve.webp" alt=""><figcaption>Steve Jobs</figcaption></figure></div>
+        <span class="sam"><img src="/quiz/img/her-warm.webp" alt="">Samantha</span>
         <div class="said"><small>Paul</small>Arjun asked you twice when he could try it.</div>
         <div class="said on"><small>Steve</small>And you answered him with a roadmap. Send him the link tonight.</div>
         <div class="cbtn"><i></i><i></i><i class="end"></i><i></i></div></div>
@@ -257,8 +257,8 @@ details p{color:var(--muted);margin:8px 0 0;font-size:15.5px}
       <p class="sub">Keep your iPhone on you. Calls, meetings, coffee, things you say to no one. She keeps all of it, and your legends use it to coach you.</p>
       <div class="iph lock"><div class="isl"></div>
         <div class="quote2">“shoot, need to remember to text Maya back.”</div>
-        <div class="noted2"><img src="img/her-warm.webp" alt=""><span><small>Noted</small>Text Maya back</span><b>✓</b></div>
-        <div class="later"><img src="img/face-pg.jpg" alt=""><span><b>Paul Graham · 9:02 PM</b>You told Maya you'd text her back. It's been six hours.</span></div></div>
+        <div class="noted2"><img src="/quiz/img/her-warm.webp" alt=""><span><small>Noted</small>Text Maya back</span><b>✓</b></div>
+        <div class="later"><img src="/quiz/img/face-pg.jpg" alt=""><span><b>Paul Graham · 9:02 PM</b>You told Maya you'd text her back. It's been six hours.</span></div></div>
       <p class="src" style="margin-top:12px;text-align:center">🔒 Hold to stop listening. Stored on our private server, deleted when you ask.</p>
     </div>
     <div class="cta"><button class="btn" data-next>Continue</button></div>
@@ -336,12 +336,12 @@ details p{color:var(--muted);margin:8px 0 0;font-size:15.5px}
 
 <!-- 9 · result = the landing page (MasterClass person-matched page + Headway paywall) -->
 <div class="wrap res" id="res">
-  <div class="top"><img src="img/msmark.png" alt=""><span class="brand">moonshot</span></div>
+  <div class="top"><img src="/quiz/img/msmark.png" alt=""><span class="brand">moonshot</span></div>
   <section style="margin-top:14px">
     <span class="pill">Your plan is ready</span>
     <h1>Your coaching plan for <span data-fill="goalTxt">building your business</span></h1>
     <div class="plan">
-      <div class="coach"><img id="coachImg" src="img/legend-steve.webp" alt=""><div><small>Your coach</small><b data-fill="lead1">Steve Jobs</b><span id="withTxt"></span></div></div>
+      <div class="coach"><img id="coachImg" src="/quiz/img/legend-steve.webp" alt=""><div><small>Your coach</small><b data-fill="lead1">Steve Jobs</b><span id="withTxt"></span></div></div>
       <div class="rows">
         <div><small>Focus</small><b id="pFocus">Following through</b></div>
         <div><small>Steps in</small><b data-fill="whenTxt">at the right moment</b></div>
@@ -404,9 +404,9 @@ details p{color:var(--muted);margin:8px 0 0;font-size:15.5px}
   <section>
     <h2>What it sounds like</h2>
     <div class="moments" style="margin-top:14px">
-      <div class="moment"><img src="img/face-steve.jpg" alt=""><div><small>Before you ship</small><p>“You showed your roommate the app and only lit up at the search. Ship the search. Hide the rest.”</p></div></div>
-      <div class="moment"><img src="img/face-serena.jpg" alt=""><div><small>After you lose</small><p>“They passed. They also told you what it takes: ten paying customers. Go get ten and walk back in.”</p></div></div>
-      <div class="moment"><img src="img/face-obama.jpg" alt=""><div><small>Before the hard talk</small><p>“You've opened with the good news three times this week. At 3:00, start with the number.”</p></div></div>
+      <div class="moment"><img src="/quiz/img/face-steve.jpg" alt=""><div><small>Before you ship</small><p>“You showed your roommate the app and only lit up at the search. Ship the search. Hide the rest.”</p></div></div>
+      <div class="moment"><img src="/quiz/img/face-serena.jpg" alt=""><div><small>After you lose</small><p>“They passed. They also told you what it takes: ten paying customers. Go get ten and walk back in.”</p></div></div>
+      <div class="moment"><img src="/quiz/img/face-obama.jpg" alt=""><div><small>Before the hard talk</small><p>“You've opened with the good news three times this week. At 3:00, start with the number.”</p></div></div>
     </div>
   </section>
 
@@ -448,7 +448,7 @@ const MSG={
 const GOTO={noone:"Most people never get someone who's done it to ask.",friends:"Friends care. But they've never built what you're building.",
  gpt:"ChatGPT answers. It's never done it, and it forgets you by tomorrow.",mentor:"Good mentors are rare, busy, and expensive.",
  content:"Books and podcasts know them. None of it knows you."};
-const heard=(h,t,c)=>`<div class="hd">🎙️ Heard: ${h}</div><div class="leg"><b><img src="img/face-${c}.jpg" alt="">${NAME[c]}</b>${t}</div>`;
+const heard=(h,t,c)=>`<div class="hd">🎙️ Heard: ${h}</div><div class="leg"><b><img src="/quiz/img/face-${c}.jpg" alt="">${NAME[c]}</b>${t}</div>`;
 function tl(id){const L=S.legends.length?S.legends:["steve"],e=document.getElementById(id);if(!e)return;const [h,t]=WEEK[S.goal||"business"][0];
  e.innerHTML=`<div class="convo">${heard(h,t,L[0])}</div>`}
 const TONE={warm:"",straight:"",brutal:" No excuses."};
@@ -456,7 +456,7 @@ const S={age:null,goal:null,legends:[],goto:null,stuck:null,when:[],tone:null};
 let step=0;const LAST=9;
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 // faces
-const fg=$('.faces');CAST.forEach(([k,n,d])=>{const b=document.createElement('button');b.className='face';b.dataset.v=k;b.innerHTML=`<img src="img/face-${k}.jpg" alt="">${n}<small>${d}</small>`;fg.appendChild(b)});
+const fg=$('.faces');CAST.forEach(([k,n,d])=>{const b=document.createElement('button');b.className='face';b.dataset.v=k;b.innerHTML=`<img src="/quiz/img/face-${k}.jpg" alt="">${n}<small>${d}</small>`;fg.appendChild(b)});
 function list(a){return a.length<2?a.join(""):a.slice(0,-1).join(", ")+" and "+a[a.length-1]}
 function fill(){
  const L=S.legends.length?S.legends:["steve"];
@@ -518,12 +518,12 @@ const WEEK={
   ["Talking it out on a walk · 20 min","You said “if I'm honest” before the startup option every time. Be honest. That's the one."],
   ["Lunch with your manager · 50 min","She offered you a new team. You said you'd think about it, and your voice dropped. That's a no. Tell her Monday."]]};
 function plan(){const L=S.legends.length?S.legends:["steve"],c=L[0],g=S.goal||"business";
- $('#coachImg').src=LEGIMG.has(c)?`img/legend-${c}.webp`:`img/face-${c}.jpg`;
+ $('#coachImg').src=LEGIMG.has(c)?`/quiz/img/legend-${c}.webp`:`/quiz/img/face-${c}.jpg`;
  $('#withTxt').textContent=L.length>1?"With "+list(L.slice(1).map(FIRST))+" on call":"Plus every other legend, on call";
  $('#pFocus').textContent=FOCUS[S.stuck||"follow"];$('#pTone').textContent=TONETXT[S.tone||"straight"];
  const days=["Mon","Tue","Wed","Thu","Fri"];
  $('#week').innerHTML=WEEK[g].map(([h,t],i)=>`<div class="d"><i>${days[i]}</i><div>${heard(h,t,c)}</div></div>`).join("")}
-function toLander(){const q=new URLSearchParams({g:S.goal||"business",l:(S.legends.length?S.legends:["steve"]).join(","),st:S.stuck||"follow",w:S.when.join(","),t:S.tone||"straight"});location.href="result.html?"+q}
+function toLander(){const q=new URLSearchParams({g:S.goal||"business",l:(S.legends.length?S.legends:["steve"]).join(","),st:S.stuck||"follow",w:S.when.join(","),t:S.tone||"straight"});location.href="/quiz/result.html?"+q}
 function result(){
  $('#app').style.display='none';const r=$('#res');r.classList.add('on');$('#stick').classList.add('on');window.scrollTo(0,0);
  const L=S.legends.length?S.legends:["steve"];const g=S.goal||"business",st=S.stuck||"follow";

@@ -7,7 +7,7 @@ Static pages for moonshot.computer. Each folder is the URL it serves; every page
 ## Upload first (25 Oct): the Samantha quiz funnel at /quiz
 
 **New folder `quiz/`** (55 files: `index.html`, `result.html`, `img/`, `scenes/`, `squad/img/logos/`). Serve it at
-**https://moonshot.computer/quiz/**, the URL the ads point to (not under `/landing-pages-oct2/`). All paths inside are relative.
+**https://moonshot.computer/quiz/**, the URL the ads point to (not under `/landing-pages-oct2/`). All asset paths are absolute (/quiz/img/..., /quiz/scenes/...), so the page works at /quiz and /quiz/ alike.
 - `/quiz/` is the quiz; it sends people to `/quiz/result.html` with their answers in the URL (their personal plan page).
 - No free trial (Suraj): every button says "Start my plan · $25/mo" and goes to https://moonshot.computer/pay/checkout.
 - Pixel 3640413812789808 on both pages: PageView; Lead on result.html; InitiateCheckout on the "Start my plan" buttons.
