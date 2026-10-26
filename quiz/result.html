@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Your Plan Is Ready</title>
+<style>
+/* Quiz last step: one person's plan. Value prop -> live scenarios (tap to see what you missed) -> offer. Lean on purpose.
+   Assets: moonshot.computer legends/sky (cleared); scene photos generated on Higgsfield Soul 2.0. Copy is draft. */
+:root{--bg:#f7f4ef;--fg:#1a1714;--muted:#756c62;--line:#e6ded2;--card:#fff;--accent:#e8622c;--blue:#2f6fe4;--soft:#fdebdc}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#14110e;--fg:#f3ede5;--muted:#ada296;--line:#332b23;--card:#1e1915;--soft:#2c1d13;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14110e;--fg:#f3ede5;--muted:#ada296;--line:#332b23;--card:#1e1915;--soft:#2c1d13;color-scheme:dark}
+*{box-sizing:border-box}html,body{margin:0;overflow-x:hidden;overscroll-behavior-x:none;max-width:100%}
+body{background:var(--bg);color:var(--fg);font:17px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-bottom:96px}
+.w{max-width:520px;margin:0 auto}
+.top{display:flex;align-items:center;gap:10px;height:56px;font-weight:700;font-size:18px}.top img{width:28px;height:28px}
+.pill{display:inline-block;background:var(--soft);color:var(--accent);font-weight:700;font-size:13px;padding:6px 12px;border-radius:99px}
+h1{font:600 clamp(30px,8vw,40px)/1.08 Georgia,"Times New Roman",serif;letter-spacing:-.01em;margin:12px 0 10px}
+h2{font:600 clamp(25px,6.5vw,31px)/1.12 Georgia,"Times New Roman",serif;margin:0 0 6px}
+.sub{color:var(--muted);margin:0}
+.coach{display:grid;grid-template-columns:118px 1fr;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:12px;margin:18px 0 0;box-shadow:0 14px 34px rgba(90,60,30,.08)}
+.port{height:140px;border-radius:16px;background:url(img/call-sky.webp) center/cover;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.port img{height:94%;width:auto}
+.coach small{display:block;font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.coach b{display:block;font:600 22px/1.15 Georgia,serif;margin:2px 0 8px}
+.coach dl{margin:0;display:grid;gap:5px;font-size:14px;line-height:1.3}.coach dt{display:inline;color:var(--muted)}.coach dd{display:inline;margin:0;font-weight:600}
+.btn{display:block;width:100%;text-align:center;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;font-size:17.5px;padding:17px;border-radius:99px;box-shadow:0 5px 0 #121212;margin-top:18px}
+.yc{display:flex;justify-content:center;align-items:center;gap:8px;color:var(--muted);font-size:14px;margin-top:12px}.yc b{background:#f26522;color:#fff;width:20px;height:20px;border-radius:4px;display:grid;place-items:center;font-size:12px}
+section{margin-top:44px}
+/* scenarios */
+.rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:16px -16px 0;padding:0 16px 8px;scrollbar-width:none}.rail::-webkit-scrollbar{display:none}
+.scn{flex:0 0 86%;scroll-snap-align:center;position:relative;border-radius:24px;overflow:hidden;aspect-ratio:3/4.3;background:#222;color:#fff}
+.scn>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.scn::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0,rgba(0,0,0,0) 28%,rgba(0,0,0,0) 40%,rgba(0,0,0,.72) 100%)}
+.lab{position:absolute;top:14px;left:14px;z-index:2;display:flex;align-items:center;gap:7px;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:6px 11px;border-radius:99px;font-size:12.5px;font-weight:700}
+.lab i{width:8px;height:8px;border-radius:50%;background:#ff453a;animation:rec 1.2s infinite}@keyframes rec{50%{opacity:.25}}
+.ov{position:absolute;left:12px;right:12px;bottom:12px;z-index:2;display:grid;gap:7px}
+.heard{background:rgba(20,20,22,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:14px;padding:9px 11px;font-size:14px;line-height:1.35}
+.heard small{display:block;font-size:11px;font-weight:700;opacity:.7;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+.heard p{margin:2px 0}
+.ask{border:0;background:#fff;color:#111;font:700 15px/1 inherit;font-family:inherit;padding:13px;border-radius:99px;cursor:pointer}
+.msg{display:none;background:rgba(255,255,255,.94);color:#111;border-radius:18px;padding:11px 12px;grid-template-columns:34px 1fr;gap:9px;align-items:start;font-size:15px;line-height:1.38;animation:pop .35s ease}
+.msg img{width:34px;height:34px;border-radius:50%;object-fit:cover}.msg b{display:block;font-size:13px}
+.scn.on .msg{display:grid}.scn.on .ask{display:none}
+@keyframes pop{from{transform:translateY(10px);opacity:0}to{transform:none;opacity:1}}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:6px}.dots i{width:7px;height:7px;border-radius:50%;background:var(--line)}.dots i.on{background:var(--accent)}
+/* how, three lines */
+.steps{display:grid;gap:10px;margin-top:14px}
+.steps div{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;font-size:15.5px;line-height:1.35}
+.steps em{font-style:normal;font-size:22px;text-align:center}
+.steps b{display:block}
+/* offer */
+.offer{background:var(--card);border:2px solid var(--fg);border-radius:26px;padding:22px 18px;text-align:center;box-shadow:0 18px 40px rgba(90,60,30,.1)}
+.offer .k{font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.offer .price{font:600 46px/1 Georgia,serif;margin:10px 0 4px}
+.offer .then{color:var(--muted);margin:0}
+.offer ul{list-style:none;padding:0;margin:16px 0 0;text-align:left;display:grid;gap:8px;font-size:15.5px}.offer li::before{content:"✓";color:#2f8a57;font-weight:800;margin-right:9px}
+.guar{display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:center;text-align:left;background:var(--soft);border-radius:16px;padding:12px;margin-top:16px;font-size:14.5px;line-height:1.35}
+.guar em{font-style:normal;font-size:28px;text-align:center}.guar b{display:block}
+.end{color:var(--accent);font-weight:700;font-size:14px;margin-top:10px}
+details{border-bottom:1px solid var(--line);padding:14px 0}summary{font-weight:700;cursor:pointer;list-style:none}summary::after{content:"+";float:right;color:var(--muted)}
+details[open] summary::after{content:"–"}details p{color:var(--muted);margin:8px 0 0;font-size:15.5px}
+.train{display:grid;gap:8px;margin-top:14px}
+.train div{display:grid;grid-template-columns:150px 1fr;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px}
+.train b{font:600 24px/1 Georgia,serif;color:var(--accent);white-space:nowrap}.train span{font-size:15.5px;color:var(--muted)}
+.srcs{font-size:13.5px;color:var(--muted);margin:10px 0 0}.srcs:empty{display:none}
+.proof{display:grid;gap:10px;margin-top:14px}
+.st{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
+.st img{height:28px;width:auto}.st .k{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:10px 0 2px}
+.st b{display:block;font:600 30px/1.1 Georgia,serif}.st p{margin:6px 0 12px;font-size:15px;line-height:1.4;color:var(--muted)}
+.bars{display:grid;gap:7px;margin-bottom:10px}.bars div{position:relative;height:34px;border-radius:9px;background:var(--line);overflow:hidden}
+.bars i{position:absolute;left:0;top:0;bottom:0;width:var(--w);background:#cfc6ba;border-radius:9px}.bars .us i{background:linear-gradient(90deg,var(--accent),#f6a04d)}
+.bars span{position:relative;z-index:1;display:flex;align-items:center;height:100%;padding-left:12px;font-size:13.5px;font-weight:700}.bars .us span{color:#fff}
+.st small{font-size:12px;color:var(--muted)}
+.slim{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14.5px;line-height:1.35;color:var(--muted)}
+.slim b{display:block;color:var(--fg);font-size:15.5px}
+.ycl{display:grid;place-items:center;width:30px;height:30px;border-radius:6px;background:#f26522;color:#fff;font-weight:800}.lk{font-size:24px;text-align:center}
+.close{text-align:center}.port.big{height:230px;max-width:300px;margin:0 auto 16px}
+.foot{color:var(--muted);font-size:12px;text-align:center;margin:30px 0 0}
+.stick{position:fixed;left:0;right:0;bottom:0;padding:10px max(16px,env(safe-area-inset-left,0px)) calc(12px + env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,var(--bg) 35%);z-index:9}
+.stick .btn{max-width:520px;margin:0 auto}
+.draft{position:fixed;top:8px;right:8px;background:#111;color:#fff;font-size:11px;font-weight:700;padding:4px 8px;border-radius:6px;opacity:.7;z-index:20}
+</style>
+</head>
+<body>
+<div class="w">
+  <div class="top"><img src="img/msmark.png" alt="">moonshot</div>
+
+  <span class="pill">Your plan is ready</span>
+  <h1 id="h1">Steve Jobs hears your meetings. Then tells you what you missed.</h1>
+  <p class="sub" id="sub">Samantha listens on your iPhone. Steve coaches you on what actually happened, so you walk into the next one ready.</p>
+  <div class="coach"><div class="port"><img id="portImg" src="img/legend-steve.webp" alt=""></div>
+    <div><small>Your plan · <span id="goalShort">your business</span></small><b id="coachName">Steve Jobs</b>
+      <dl><div><dt>Focus: </dt><dd id="dFocus">Doing what you said you'd do</dd></div><div><dt>Steps in: </dt><dd id="dWhen">Before big moments</dd></div><div><dt>Style: </dt><dd id="dTone">Straight with you</dd></div></dl></div></div>
+  <a class="btn" href="https://moonshot.computer/pay/checkout">Start my plan · $25/mo</a>
+  <div class="yc"><b>Y</b>Backed by Y Combinator</div>
+
+  <section>
+    <h2 id="seeH">See what Steve catches.</h2>
+    <p class="sub">Three moments from your week. Tap to see what you missed.</p>
+    <div class="rail" id="rail"></div>
+    <div class="dots" id="dots"></div>
+  </section>
+
+  <section>
+    <h2>How it works</h2>
+    <div class="steps">
+      <div><em>📱</em><span><b>Keep your iPhone on you.</b>Samantha hears your calls, meetings and coffees.</span></div>
+      <div><em>🧠</em><span><b><span class="cf">Steve</span> catches what you missed.</b>Who said what, what they meant, what to do next.</span></div>
+      <div><em>💬</em><span><b>Text or call <span class="cf">Steve</span> anytime.</b>Before the big moment, or right after it.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="offer">
+      <div class="k">Founding member</div>
+      <div class="price">$25<small style="font-size:22px">/mo</small></div>
+      <p class="then">Founding price, locked for 12 months. Cancel anytime.</p>
+      <ul>
+        <li><span id="incl">Steve Jobs</span>, plus every other legend</li>
+        <li>Samantha hears your day and keeps it</li>
+        <li>Calls you can join, texts anytime</li>
+      </ul>
+      <div class="guar"><em>🛡️</em><span><b>Brave Week Guarantee</b>Not for you in 7 days? One-word reply, full refund.</span></div>
+      <a class="btn" href="https://moonshot.computer/pay/checkout">Start my plan · $25/mo</a>
+      <div class="end">Founding price ends Sunday, Nov 1</div>
+      <div class="yc"><b>Y</b>Backed by Y Combinator</div>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="trH">Built from Steve's public record.</h2>
+    <p class="sub">Their own interviews, talks and writing, plus what others wrote about them. Then Samantha adds the one thing no book has: your day.</p>
+    <div class="train" id="train"></div>
+    <p class="srcs" id="srcs"></p>
+  </section>
+
+  <section>
+    <h2>Why a legend beside you works.</h2>
+    <div class="proof">
+      <div class="st"><img src="squad/img/logos/stanford.png" alt="Stanford University"><p class="k">Working beside others</p><b>48–64% longer</b>
+        <p>People who felt they were working with others stuck with a hard task longer, even alone.</p>
+        <div class="bars"><div><span>Alone</span><i style="--w:61%"></i></div><div class="us"><span>Together</span><i style="--w:100%"></i></div></div><small>Stanford University, 2014</small></div>
+      <div class="st"><img src="squad/img/logos/msu.png" alt="Michigan State University"><p class="k">Beside someone stronger</p><b>2× longer</b>
+        <p>Paired with a slightly stronger partner, people kept going about twice as long.</p>
+        <div class="bars"><div><span>Alone · 10.6 min</span><i style="--w:48%"></i></div><div class="us"><span>Paired · 21.9 min</span><i style="--w:100%"></i></div></div><small>Michigan State University, 2012</small></div>
+      <div class="slim"><span class="ycl">Y</span><span><b>Backed by Y Combinator</b>The accelerator behind Airbnb, Stripe and Dropbox.</span></div>
+      <div class="slim"><span class="lk">🔒</span><span><b>Your day stays yours</b>Hold to stop listening. Private server, deleted when you ask.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Questions</h2>
+    <details><summary>Is this really <span class="cn">Steve Jobs</span>?</summary><p>It's AI, written from the public record: their interviews, books and talks. It speaks the way they spoke, about your day.</p></details>
+    <details><summary>Does it listen to everything?</summary><p>Only when you want it to. Hold to stop listening. Stored on our private server, deleted when you ask.</p></details>
+    <details><summary>How was <span class="cf">Steve</span> built?</summary><p>From their public record: their own interviews, talks and writing, plus what others wrote about them. They didn't endorse it or help make it.</p></details>
+    <details><summary>What does it cost?</summary><p>$25/mo, the founding price, locked for 12 months. Not for you in 7 days? One-word reply, full refund.</p></details>
+    <details><summary>Can I cancel?</summary><p>Anytime, in one tap.</p></details>
+  </section>
+
+  <section class="close">
+    <div class="port big"><img class="portc" src="img/legend-steve.webp" alt=""></div>
+    <h2>Your plan with <span class="cf">Steve</span> is ready.</h2>
+    <p class="sub">$25/mo, locked for 12 months. <span class="cf">Steve</span> starts with your next meeting.</p>
+    <a class="btn" href="https://moonshot.computer/pay/checkout">Start my plan · $25/mo</a>
+    <div class="yc"><b>Y</b>Backed by Y Combinator</div>
+  </section>
+
+  <p class="foot">Conversations shown are examples written by our team. Legends are AI, written from the public record; they and their estates do not endorse moonshot. © 2026 67 Labs, Inc.</p>
+</div>
+<div class="stick"><a class="btn" href="https://moonshot.computer/pay/checkout">Start my plan · $25/mo</a></div>
+
+<script>
+const q=new URLSearchParams(location.search);
+const NAME={steve:"Steve Jobs",pg:"Paul Graham",serena:"Serena Williams",kobe:"Kobe Bryant",oprah:"Oprah Winfrey",obama:"Barack Obama",elon:"Elon Musk",jony:"Jony Ive",feynman:"Richard Feynman",angelou:"Maya Angelou",einstein:"Albert Einstein",davinci:"Leonardo da Vinci",curie:"Marie Curie",karpathy:"Andrej Karpathy",carmack:"John Carmack",fadell:"Tony Fadell",aurelius:"Marcus Aurelius"};
+const FIRST=k=>k==="pg"?"Paul":k==="davinci"?"Leonardo":k==="aurelius"?"Marcus":NAME[k].split(" ")[0];
+const GOAL={business:"your business",career:"your career",craft:"your craft",body:"your training",voice:"speaking up",next:"your next move"};
+const FOCUS={start:"Starting, not just planning",follow:"Doing what you said you'd do",decide:"Making the big calls",doubt:"Believing you're good enough",focus:"Knowing what matters"};
+const WHEN={before:"Before big moments",avoid:"When you're avoiding something",lost:"After a setback",night:"At the end of the day",any:"Whenever they spot something"};
+const TONE={warm:"Encouraging",straight:"Straight with you",brutal:"No excuses"};
+// value prop per goal: mechanism + benefit, about one person ({c} = coach full name, {f} = first name)
+const HEAD={business:["{c} hears your meetings. Then tells you what you missed.","Samantha listens on your iPhone. {f} coaches you on what actually happened, so you walk into the next meeting ready."],
+ career:["{c} hears your meetings. Then tells you what you missed.","Samantha listens on your iPhone. {f} coaches you on what your manager really said, and what to do about it."],
+ craft:["{c} hears the feedback. Then tells you what it meant.","Samantha listens on your iPhone. {f} turns every note, session and review into your next move."],
+ body:["{c} hears your day. Then holds you to your training.","Samantha listens on your iPhone. {f} catches what your trainer said and every excuse you make."],
+ voice:["{c} hears you speak. Then tells you how to land it.","Samantha listens on your iPhone. {f} coaches you after every meeting, call and talk."],
+ next:["{c} hears you think out loud. Then tells you what you already know.","Samantha listens on your iPhone. {f} catches what lights you up, and what you keep avoiding."]};
+// scenes: [photo, label, [heard lines], coach line]
+const SC={business:[[0,"Standup · 10:05 AM",["Dan: Launch date's fine.","Dan: Yeah, it's fine. Should be fine."],"Dan said “fine” three times. He doesn't think it's fine. Ask him alone what would make it real."],
+  [1,"Investor call · 2:30 PM",["Priya: What does churn look like month to month?","Priya: And after month three?"],"She asked about churn twice. That's her real question. Send her the cohort chart tonight."],
+  [2,"Coffee with your cofounder",["Maya: So we push the launch two weeks?","You: Sure, yeah, makes sense."],"You agreed to everything she said. You didn't mean two of them. Tell her which two."]],
+ career:[[3,"One-on-one · 11:00 AM",["Manager: It's really about visibility.","Manager: Visibility with leadership, mostly."],"She said “visibility” four times. That's the gap. Present the launch yourself on Thursday."],
+  [4,"Team meeting · 3:15 PM",["Mark: What if we bundled the reports?","Lead: Love that, Mark."],"That was your idea, ten minutes earlier. Next time say it twice, with your name on it."],
+  [5,"Recruiter call · 6:10 PM",["Recruiter: What number are you looking for?","You: Around one-forty, I think."],"You gave your number first. On the next call, ask for her range."]],
+ craft:[[6,"Call with your editor",["Editor: The middle drags a bit.","Editor: Chapter two, though. The pace is great."],"Cut the middle to chapter two's length. That's the whole note."],
+  [7,"Studio session · 11:40 PM",["You: Play the first take again.","You: Yeah… that one."],"You said “that one” three times. Stop recording. Use the first take."],
+  [8,"Client review",["Client: I'm not sure about the orange.","Client: The orange is a lot."],"They don't hate the design. They hate the color. Change the color. Keep the rest."]],
+ body:[[9,"Session with your trainer",["Trainer: Left side's lagging again.","Trainer: Watch that left knee."],"He said your left side twice. Add single-leg work this week, three sets, both days."],
+  [10,"Morning run",["Friend: You're not even out of breath.","You: Ha, this is easy."],"You talked the whole way. That's an easy pace. Thursday, run the last mile hard."],
+  [11,"Couch · 10:52 PM",["You: One more episode.","TV: Next episode in 5…"],"You said “one more” at 10:30 too. You have a 6 AM. Phone down, lights off."]],
+ voice:[[12,"Team update · 9:30 AM",["You: Sorry, this might be dumb, but…","You: …so yeah, maybe we could—"],"You had them until “this might be dumb.” Lead with the point. Drop the apology."],
+  [13,"Call with your manager",["You: I think we should, I think, maybe…","You: I think it could work."],"You said “I think” eleven times. Say it once, then state it."],
+  [14,"Dinner with friends",["Friend: Stop, you're killing me.","Everyone: (laughing)"],"That's how you talk when you're not trying. Talk like this in Thursday's meeting."]],
+ next:[[15,"Coffee with a friend at Stripe",["You: So what's your team like?","You: And do you like your manager?"],"Six questions about her job, none about yours. You want hers. Ask who's hiring."],
+  [16,"Call with your dad",["Dad: Your job sounds fine to me.","You: No, it's fine, it's just…"],"You defended a job nobody attacked. You're convincing yourself."],
+  [17,"First-round interview",["Interviewer: What would you build here?","You: Honestly? I'd start with…"],"That's when you came alive. Lead with it in round two."]]};
+const L=(q.get("l")||"steve").split(",").filter(k=>NAME[k]);const c=L[0]||"steve";
+const g=SC[q.get("g")]?q.get("g"):"business";
+const fill=t=>t.replaceAll("{c}",NAME[c]).replaceAll("{f}",FIRST(c));
+const list=a=>a.length<2?a.join(""):a.slice(0,-1).join(", ")+" and "+a[a.length-1];
+document.getElementById("h1").textContent=fill(HEAD[g][0]);
+document.getElementById("sub").textContent=fill(HEAD[g][1]);
+document.getElementById("portImg").src="img/legend-"+c+".webp";
+document.getElementById("portImg").onerror=function(){this.onerror=null;this.src="img/face-"+c+".jpg";this.style.borderRadius="50%";this.style.height="70%";this.style.marginBottom="15%"};
+document.getElementById("coachName").textContent=NAME[c];
+// Build counts from the internal brain (legend-sources.md, 25 Oct). Rules: counts and years OK; hours only for Obama;
+// "built from their public record", never endorsed; Curie and Angelou not built, so they fall back to cast totals.
+const TRAIN={obama:[["501","talks, interviews and writings in his own words"],["190 hrs","of his own talk"],["1983–2026","years on the record"]],
+ kobe:[["231","interviews and talks in his own words"],["599","sources in all"],["1996–2020","years on the record"]],
+ oprah:[["290","shows, interviews and writings in her own words"],["570","sources in all"],["1991–2026","years on the record"]],
+ einstein:[["122","letters, books and papers in his own words"],["568","sources in all"],["Since 1900","on the record"]],
+ steve:[["65","named sources"],["104","stories, in his words"],["1976–2011","years on the record"]],
+ pg:[["231","essays, every one he's published"],["~10,000","Hacker News comments"],["1993–2026","years on the record"]]};
+const SRCS={steve:"Including the 1985 Playboy interview, the 1995 Lost Interview, WWDC 1997, the 2005 Stanford commencement and D8 in 2010."};
+const CAST=[["37","legends built so far"],["11,256","sources across the cast"],["5,150","in their own words"]];
+const tr=TRAIN[c]||CAST;
+document.getElementById("trH").textContent=TRAIN[c]?"Built from "+FIRST(c)+"'s public record.":"Every legend is built from their public record.";
+document.getElementById("train").innerHTML=tr.map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join("");
+document.getElementById("srcs").textContent=SRCS[c]||"";
+document.querySelectorAll(".portc").forEach(e=>{e.src="img/legend-"+c+".webp";e.onerror=function(){this.onerror=null;this.src="img/face-"+c+".jpg"}});
+document.getElementById("goalShort").textContent=GOAL[g];
+document.getElementById("dFocus").textContent=FOCUS[q.get("st")]||FOCUS.follow;
+const w=(q.get("w")||"before").split(",").filter(k=>WHEN[k]).map((k,i)=>i?WHEN[k].toLowerCase():WHEN[k]);
+document.getElementById("dWhen").textContent=list(w.length?w:[WHEN.before]);
+document.getElementById("dTone").textContent=TONE[q.get("t")]||TONE.straight;
+document.getElementById("seeH").textContent="See what "+FIRST(c)+" catches.";
+document.getElementById("incl").textContent=NAME[c]+(L.length>1?", "+list(L.slice(1).map(FIRST)):"");
+document.querySelectorAll(".cf").forEach(e=>e.textContent=FIRST(c));document.querySelectorAll(".cn").forEach(e=>e.textContent=NAME[c]);
+const rail=document.getElementById("rail");
+rail.innerHTML=SC[g].map(([i,lab,heard,line],n)=>`<div class="scn" data-n="${n}"><img src="scenes/s${i}.jpg" alt="">
+ <div class="lab"><i></i>Samantha heard · ${lab}</div>
+ <div class="ov"><div class="heard"><small>What was said</small>${heard.map(h=>`<p>${h}</p>`).join("")}</div>
+ <button class="ask" type="button">What did I miss?</button>
+ <div class="msg"><img src="img/face-${c}.jpg" alt=""><div><b>${NAME[c]}</b>${line}</div></div></div></div>`).join("");
+rail.addEventListener("click",e=>{const b=e.target.closest(".ask");if(b)b.closest(".scn").classList.add("on")});
+const dots=document.getElementById("dots");dots.innerHTML=SC[g].map((_,i)=>`<i class="${i?"":"on"}"></i>`).join("");
+rail.addEventListener("scroll",()=>{const n=Math.round(rail.scrollLeft/(rail.firstElementChild.offsetWidth+12));[...dots.children].forEach((d,i)=>d.classList.toggle("on",i===n))});
+if(q.has("reveal"))document.querySelectorAll(".scn").forEach(s=>s.classList.add("on"));
+</script>
+</body>
+</html>

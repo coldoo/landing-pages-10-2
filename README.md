@@ -4,6 +4,18 @@ Static pages for moonshot.computer. Each folder is the URL it serves; every page
 (CSS and JS inline, no build step) and the pages share `/img` and `/vid`. On the live site these files sit under
 `/landing-pages-oct2/`, so keep the folder layout as it is here.
 
+## Upload first (25 Oct): the Samantha quiz funnel at /quiz
+
+**New folder `quiz/`** (56 files: `index.html`, `result.html`, `img/`, `scenes/`, `squad/img/logos/`). Serve it at
+**https://moonshot.computer/quiz/**, the URL the ads point to (not under `/landing-pages-oct2/`). All paths inside are relative.
+- `/quiz/` is the quiz; it sends people to `/quiz/result.html` with their answers in the URL (their personal plan page).
+- No free trial (Suraj): every button says "Start my plan · $25/mo" and goes to https://moonshot.computer/pay/checkout.
+- Pixel 3640413812789808 on both pages: PageView; Lead on result.html; InitiateCheckout on the "Start my plan" buttons.
+- Before turning on the ads, run it on your phone end to end, tap the button and check Stripe shows $25/mo with no trial,
+  and that the test events show in Events Manager.
+- Then turn on the two paused ad sets in "MS · CBO · Static batch 1 + c04 · IC · /squad/ trial":
+  "NEW · STATIC · Samantha quiz → /quiz · 10-25" and "NEW · STATIC · Dylan winners → /quiz · 10-25".
+
 ## Upload first (21 Oct): offer bar + sticky CTA on /a and the listicles, and no free year (one upload)
 
 **Upload these 10 files:** `index.html` (/a), `f/index.html`, `e/index.html`, `lp-01/index.html`, `lp-02/index.html`,

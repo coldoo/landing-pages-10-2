@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Samantha Quiz Funnel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Draft quiz funnel for Samantha. Shape copied from Headway (quiz-first, "who inspires you"), Mob (pacing),
+   MasterClass (person-matched page + plan). One-up: the result shows your legend talking to YOU about YOUR goal. */
+:root{--bg:#fbf7f2;--fg:#17140f;--muted:#6f675c;--line:#e8e0d4;--card:#fff;--accent:#e8622c;--accent2:#f6a04d;--soft:#fdebdc;--ok:#2f8a57}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#14110e;--fg:#f4eee6;--muted:#b0a596;--line:#332b23;--card:#1e1915;--accent:#ff7a3d;--accent2:#ffb067;--soft:#2c1d13;--ok:#4cc27e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14110e;--fg:#f4eee6;--muted:#b0a596;--line:#332b23;--card:#1e1915;--accent:#ff7a3d;--accent2:#ffb067;--soft:#2c1d13;--ok:#4cc27e;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;overflow-x:hidden;overscroll-behavior-x:none;touch-action:pan-y;max-width:100%}
+body{background:var(--bg);color:var(--fg);font:17px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:520px;width:100%;overflow-x:hidden;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;padding:14px 0 28px}
+.top{display:flex;align-items:center;gap:12px;height:40px}
+.top img{width:26px;height:26px;border-radius:7px}
+.top .brand{font-weight:700;letter-spacing:-.01em}
+.back{background:none;border:0;color:var(--muted);font-size:22px;padding:4px 8px 4px 0;cursor:pointer;visibility:hidden}
+.back.on{visibility:visible}
+.bar{height:5px;background:var(--line);border-radius:9px;overflow:hidden;margin:8px 0 22px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .35s}
+.screen{display:none;flex:1;flex-direction:column;animation:in .3s ease}
+.screen.on{display:flex}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h1{font:800 clamp(28px,7.6vw,38px)/1.08 -apple-system,"SF Pro Display","Segoe UI",Arial,sans-serif;letter-spacing:-.025em;margin:0 0 10px}
+h2{font:800 clamp(23px,6vw,29px)/1.15 -apple-system,"SF Pro Display","Segoe UI",Arial,sans-serif;letter-spacing:-.02em;margin:0 0 6px}
+.sub{color:var(--muted);margin:0 0 20px}
+.pill{display:inline-flex;align-items:center;gap:6px;background:var(--soft);color:var(--accent);font-weight:700;font-size:13px;padding:6px 11px;border-radius:99px;margin-bottom:14px;align-self:flex-start}
+.opts{display:grid;gap:10px}
+.opt{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--card);color:var(--fg);border:1.5px solid var(--line);border-radius:14px;padding:15px 16px;font-family:inherit;font-weight:600;font-size:16.5px;line-height:1.3;cursor:pointer;transition:border-color .15s,transform .1s}
+.opt:active{transform:scale(.985)}
+.opt .em{font-size:24px;width:30px;text-align:center;flex:none}
+.opt.sel{border-color:var(--accent);background:var(--soft)}
+.opt .chk{margin-left:auto;width:22px;height:22px;border-radius:7px;border:1.5px solid var(--line);flex:none;display:grid;place-items:center;font-size:14px;color:#fff}
+.opt.sel .chk{background:var(--accent);border-color:var(--accent)}
+.faces{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.face{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:10px 6px 10px;text-align:center;cursor:pointer;font-family:inherit;font-weight:600;font-size:13.5px;line-height:1.2;color:var(--fg);position:relative}
+.face img{width:100%;max-width:92px;aspect-ratio:1;border-radius:50%;object-fit:cover;display:block;margin:0 auto 8px;filter:saturate(.9)}
+.face.sel{border-color:var(--accent);background:var(--soft)}
+.face.sel::after{content:"✓";position:absolute;top:7px;right:8px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:13px;display:grid;place-items:center}
+.face small{display:block;color:var(--muted);font-weight:500;font-size:11.5px;margin-top:2px}
+.cta{margin-top:auto;padding-top:20px;position:sticky;bottom:0;background:linear-gradient(transparent,var(--bg) 30%);padding-bottom:4px}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:17px 18px;background:var(--accent);color:#fff;font-family:inherit;font-weight:700;font-size:17px;line-height:1;cursor:pointer;text-align:center;text-decoration:none}
+.btn[disabled]{opacity:.35;cursor:default}
+.hint{color:var(--muted);font-size:13px;text-align:center;margin-top:9px}
+.hero-legends{display:flex;justify-content:center;align-items:flex-end;margin:4px 0 18px;height:190px;position:relative;overflow:hidden;max-width:100%}
+.hero-legends img{height:88%;width:auto;max-width:36%;object-fit:contain;margin:0 -10px;filter:drop-shadow(0 10px 18px rgba(232,98,44,.18))}
+.hero-legends img:nth-child(2){height:100%;max-width:40%;z-index:2}
+.yc{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--muted);font-size:13.5px;margin-top:14px}
+.yc b{background:#f26522;color:#fff;width:20px;height:20px;border-radius:4px;display:grid;place-items:center;font-size:12px}
+/* interstitial */
+.inter{flex:1;display:flex;flex-direction:column;justify-content:center}
+.big{font:800 clamp(44px,13vw,64px)/1 -apple-system,"SF Pro Display","Segoe UI",Arial,sans-serif;letter-spacing:-.03em;color:var(--accent)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
+.compare div{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:14px}
+.compare div:last-child{border-color:var(--accent);background:var(--soft)}
+.compare h4{margin:0 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.compare div:last-child h4{color:var(--accent)}
+.compare p{margin:0 0 6px;font-size:15px;line-height:1.35}
+.study{display:grid;gap:10px;margin:16px 0}
+.srow{display:grid;grid-template-columns:76px 1fr;align-items:center;gap:10px;font-size:14px}
+.srow span{height:30px;border-radius:8px;background:var(--line);display:flex;align-items:center;padding-left:10px;font-weight:700;font-size:13px}
+.srow span.hi{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff}
+.src{color:var(--muted);font-size:12.5px}
+/* build */
+.build{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.ring{width:150px;height:150px;border-radius:50%;background:conic-gradient(var(--accent) calc(var(--p)*1%),var(--line) 0);display:grid;place-items:center;margin-bottom:22px}
+.ring b{width:126px;height:126px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font-size:32px;font-weight:800}
+.steps{list-style:none;padding:0;margin:16px 0 0;text-align:left;display:grid;gap:10px;width:100%;max-width:340px}
+.steps li{color:var(--muted);display:flex;gap:10px;align-items:center;font-size:15.5px}
+.steps li i{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line);flex:none;font-style:normal;font-size:12px;display:grid;place-items:center}
+.steps li.done{color:var(--fg)}
+.steps li.done i{background:var(--ok);border-color:var(--ok);color:#fff}
+/* result lander */
+.res{display:none}
+.res.on{display:block}
+.res section{margin:0 0 38px}
+.lock{background:linear-gradient(160deg,#2a1c14,#7a3a1c 55%,#e8622c);border-radius:26px;padding:22px 14px 18px;color:#fff;margin:6px 0 10px;box-shadow:0 18px 40px rgba(122,58,28,.25)}
+.lock .time{text-align:center;font:300 54px/1 -apple-system,"SF Pro Display",Arial,sans-serif;letter-spacing:-.02em}
+.lock .date{text-align:center;font-size:14px;opacity:.85;margin-bottom:18px}
+.notif{background:rgba(255,255,255,.2);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:18px;padding:12px 13px;display:grid;grid-template-columns:38px 1fr;gap:10px;margin-top:8px;font-size:14.5px;line-height:1.35}
+.notif img{width:38px;height:38px;border-radius:50%;object-fit:cover}
+.notif b{display:flex;justify-content:space-between;font-size:14px}
+.notif b em{font-style:normal;font-weight:400;opacity:.75;font-size:12.5px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
+.chips span{background:var(--soft);color:var(--accent);font-weight:700;font-size:13px;padding:6px 11px;border-radius:99px}
+.vs{width:100%;border-collapse:collapse;font-size:15px;background:var(--card);border-radius:14px;overflow:hidden;border:1.5px solid var(--line)}
+.vs th,.vs td{padding:11px 10px;border-bottom:1px solid var(--line);text-align:center}
+.vs th:first-child,.vs td:first-child{text-align:left}
+.vs thead th{font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.vs thead th:last-child{color:var(--accent)}
+.vs td:last-child{background:var(--soft);font-weight:800;color:var(--accent)}
+.vs .x{color:var(--muted)}
+.moments{display:grid;gap:12px}
+.moment{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:14px;display:grid;grid-template-columns:44px 1fr;gap:12px}
+.moment img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+.moment small{display:block;color:var(--accent);font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em}
+.moment p{margin:3px 0 0;font-size:15.5px;line-height:1.4}
+.how{counter-reset:h;display:grid;gap:14px}
+.how div{display:grid;grid-template-columns:34px 1fr;gap:12px}
+.how div::before{counter-increment:h;content:counter(h);width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:grid;place-items:center}
+.how b{display:block}
+.how p{margin:2px 0 0;color:var(--muted);font-size:15.5px}
+.offer{background:var(--card);border:2px solid var(--accent);border-radius:20px;padding:20px 18px;text-align:center}
+.offer .tag{display:inline-block;background:var(--accent);color:#fff;font-weight:800;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:99px;margin-bottom:10px}
+.offer .price{font:800 40px/1 -apple-system,"SF Pro Display",Arial,sans-serif;letter-spacing:-.02em}
+.offer .then{color:var(--muted);margin:6px 0 4px}
+.offer ul{list-style:none;padding:0;margin:16px 0;text-align:left;display:grid;gap:8px;font-size:15.5px}
+.offer li::before{content:"✓";color:var(--ok);font-weight:800;margin-right:9px}
+.timer{color:var(--accent);font-weight:700;font-size:14px;margin-top:10px}
+.anchor{color:var(--muted);font-size:14.5px;margin:0 0 14px}
+details{border-bottom:1px solid var(--line);padding:13px 0}
+summary{font-weight:700;cursor:pointer;list-style:none}
+summary::after{content:"+";float:right;color:var(--muted)}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);margin:8px 0 0;font-size:15.5px}
+.foot{color:var(--muted);font-size:12px;text-align:center;margin:26px 0 90px}
+.stick{position:fixed;left:0;right:0;bottom:0;padding:10px max(16px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line);display:none;z-index:9}
+.stick.on{display:block}
+.stick .btn{max-width:520px;margin:0 auto}
+.ages{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:6px 0 14px}
+.age{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:12px 0 0;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;align-items:center;font-family:inherit;color:var(--fg)}
+.age img{height:118px;width:auto;object-fit:contain;margin-bottom:8px}
+.age b{display:block;width:100%;background:var(--accent);color:#fff;padding:11px 6px;font-size:15px}
+.age.sel{border-color:var(--accent)}
+.quote{background:var(--card);border-left:4px solid var(--accent);border-radius:10px;padding:16px;font:600 18px/1.4 Georgia,serif;margin-top:14px}
+.quote small{display:block;font:500 13px/1 -apple-system,"Segoe UI",Arial,sans-serif;color:var(--muted);margin-top:10px}
+.pop{position:fixed;inset:0;background:rgba(20,17,14,.35);display:none;place-items:center;padding:16px;z-index:30}
+.pop.on{display:grid}
+.pop>div{background:var(--card);border-radius:18px;padding:20px 18px;max-width:380px;width:100%;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.2)}
+.pop small{color:var(--muted);font-size:13px}.pop b{display:block;font-size:20px;line-height:1.25;margin:6px 0 16px}
+.yn{display:grid;grid-template-columns:1fr 1fr;gap:10px}.yn button{border:0;border-radius:12px;padding:15px;background:var(--line);color:var(--fg);font:700 16px/1 inherit;font-family:inherit;cursor:pointer}
+.yn button:hover{background:var(--soft)}
+.vs th:nth-child(2),.vs th:nth-child(3){font-size:11px}
+.two{display:grid;gap:10px;margin-top:6px}
+.ans{border-radius:16px;padding:13px 14px;font-size:15.5px;line-height:1.4}
+.ans small{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em}
+.ans small img{width:22px;height:22px;border-radius:50%}
+.gen{background:var(--card);border:1.5px solid var(--line);color:var(--muted)}
+.ctx{background:var(--soft);border:1.5px solid var(--accent)}.ctx small{color:var(--accent)}
+.tl{display:grid;margin-top:8px}
+.tl .r{display:grid;grid-template-columns:64px 1fr;gap:10px;padding:9px 0}
+.tl .r time{font-size:12.5px;font-weight:700;color:var(--muted);padding-top:3px}
+.tl .said{font-style:italic;font-size:15.5px}
+.tl .noted{display:inline-block;margin-top:5px;font-size:12px;font-weight:700;color:var(--ok);background:var(--soft);padding:3px 8px;border-radius:99px}
+.tl .leg{background:var(--card);border:1.5px solid var(--accent);border-radius:14px;padding:10px 12px;font-size:15.5px;line-height:1.4}
+.tl .leg b{display:flex;align-items:center;gap:7px;font-size:13.5px;margin-bottom:3px}
+.tl .leg img{width:24px;height:24px;border-radius:50%}
+.day{background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:14px 14px 6px;margin:6px 0 10px}
+.dayh{font-weight:800;font-size:15px;margin-bottom:2px}
+.three{display:grid;gap:10px}.three div{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px}
+.three b{display:block}.three p{margin:2px 0 0;color:var(--muted);font-size:15px}
+.plan{background:var(--card);border:1.5px solid var(--line);border-radius:20px;overflow:hidden;margin-top:12px}
+.coach{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:center;padding:14px 16px;background:linear-gradient(135deg,var(--soft),transparent)}
+.coach img{width:110px;height:110px;object-fit:contain}
+.coach small,.rows small{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.coach b{display:block;font-size:24px;font-weight:800;letter-spacing:-.01em}.coach span{color:var(--muted);font-size:14.5px}
+.rows{display:grid;border-top:1px solid var(--line)}
+.rows div{display:grid;grid-template-columns:90px 1fr;gap:10px;padding:11px 16px;border-bottom:1px solid var(--line);align-items:baseline}
+.rows div:last-child{border:0}.rows b{font-size:15.5px}
+.rows b::first-letter{text-transform:uppercase}
+.week{display:grid;gap:8px}
+.week .d{display:grid;grid-template-columns:44px 1fr;gap:12px;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px}
+.week .d i{font-style:normal;font-weight:800;color:var(--accent);font-size:14px;padding-top:1px}
+.week .d p{margin:0;font-size:15.5px;line-height:1.4}.week .d q{font-weight:700}
+.hd{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:6px}
+.week .d>div .leg,.convo .leg{background:var(--soft);border:1.5px solid var(--accent);border-radius:12px;padding:9px 11px;font-size:15.5px;line-height:1.4}
+.week .d>div .leg b,.convo .leg b{display:flex;align-items:center;gap:7px;font-size:13.5px;margin-bottom:3px}
+.week .d>div .leg img,.convo .leg img{width:24px;height:24px;border-radius:50%}
+.convo{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:12px 14px;margin-top:8px}
+.iph{position:relative;width:min(270px,78%);aspect-ratio:9/18.5;margin:14px auto 0;border-radius:38px;border:7px solid #1b1b1d;box-shadow:0 18px 40px rgba(60,40,20,.25);overflow:hidden;color:#fff;font-family:-apple-system,"SF Pro Text","Segoe UI",Arial,sans-serif}
+.iph .isl{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:76px;height:22px;border-radius:12px;background:#000;z-index:3}
+.iph.call{background:url(img/call-sky.webp) center/cover;text-align:center;padding:48px 12px 0}
+.ctop{position:absolute;top:11px;left:20px;font-size:12px;font-weight:700}
+.duo{display:flex;justify-content:center;gap:4px}.duo figure{margin:0}.duo img{height:92px;width:auto}.duo figcaption{font-size:10px;font-weight:700}
+.sam{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.25);border-radius:99px;padding:3px 9px 3px 3px;font-size:10.5px;font-weight:700;margin:8px 0 8px}.sam img{width:16px;height:16px;border-radius:50%}
+.iph .said{font:400 14.5px/1.3 Georgia,serif;opacity:.55;margin:6px 4px}.iph .said.on{opacity:1}.iph .said small{display:block;font:700 9.5px -apple-system,Arial,sans-serif;opacity:.8;margin-bottom:2px}
+.cbtn{position:absolute;bottom:16px;left:0;right:0;display:flex;justify-content:center;gap:12px}.cbtn i{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.35)}.cbtn i.end{background:#ff3b30}
+.iph.lock{background:url(img/hero-ridges.webp) center/cover;padding:52px 12px 0}
+.quote2{font:italic 400 16px/1.3 Georgia,serif;text-align:center;color:#2b2420;margin:6px 6px 14px;text-shadow:0 1px 8px rgba(255,255,255,.6)}
+.noted2{display:flex;align-items:center;gap:8px;background:#111;border-radius:99px;padding:6px 10px 6px 6px}.noted2 img{width:26px;height:26px;border-radius:50%}
+.noted2 span{font-size:12px;font-weight:700;line-height:1.2}.noted2 small{display:block;font-size:9.5px;opacity:.7;font-weight:500}.noted2 b{margin-left:auto;background:#34c759;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:11px}
+.later{position:absolute;left:10px;right:10px;bottom:18px;display:flex;gap:8px;align-items:flex-start;background:rgba(255,255,255,.75);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:16px;padding:9px;color:#1a1714;font-size:12px;line-height:1.3;text-align:left}
+.later img{width:26px;height:26px;border-radius:50%;flex:none}.later b{display:block;font-size:11px;margin-bottom:1px}
+.draft{position:fixed;top:8px;right:8px;background:#111;color:#fff;font-size:11px;font-weight:700;padding:4px 8px;border-radius:6px;opacity:.7;z-index:20;letter-spacing:.04em}
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+  <div class="top"><button class="back" id="back" aria-label="Back">‹</button><img src="img/msmark.png" alt=""><span class="brand">moonshot</span></div>
+  <div class="bar" id="barwrap"><i id="bar"></i></div>
+
+  <!-- 0 · landing = first question (Headway / Noom shape) -->
+  <section class="screen on" data-step="0">
+        <div class="hero-legends"><img src="img/legend-serena.webp" alt=""><img src="img/legend-steve.webp" alt=""><img src="img/legend-pg.webp" alt=""></div>
+    <span class="pill">⏱ 2-minute quiz</span>
+    <h1>Stop deciding alone. Get coached by the legends on your actual day.</h1>
+    <p class="sub">Answer a few questions and we'll match you with the legends who'd coach you best.</p>
+    <h2 style="font-size:19px">What are you working toward right now?</h2>
+    <div class="opts" data-q="goal" data-single>
+      <button class="opt" data-v="business"><span class="em">🚀</span>Building a business</button>
+      <button class="opt" data-v="career"><span class="em">📈</span>Leveling up my career</button>
+      <button class="opt" data-v="craft"><span class="em">🎨</span>Getting great at my craft</button>
+      <button class="opt" data-v="body"><span class="em">🏃</span>Getting in the best shape of my life</button>
+      <button class="opt" data-v="voice"><span class="em">🎤</span>Speaking and leading with confidence</button>
+      <button class="opt" data-v="next"><span class="em">🧭</span>Figuring out my next move</button>
+    </div>
+    <div class="yc"><b>Y</b>Backed by Y Combinator</div>
+  </section>
+
+  <!-- 2 · who inspires you (Headway's exact question, our cleared cast) -->
+  <section class="screen" data-step="1">
+    <h2>Whose success inspires you most?</h2>
+    <p class="sub">Pick up to 3. They'll be in your corner.</p>
+    <div class="faces" data-q="legends" data-max="3"></div>
+    <div class="cta"><button class="btn" data-next disabled>Continue</button><div class="hint" id="pickhint">Pick at least one</div></div>
+  </section>
+
+  <!-- who do you go to (the gap people feel: "no mentor to ask") -->
+  <section class="screen" data-step="2">
+    <h2>Who do you go to when you're stuck?</h2>
+    <p class="sub">Be honest.</p>
+    <div class="opts" data-q="goto" data-single>
+      <button class="opt" data-v="noone"><span class="em">🤷</span>No one. I figure it out alone.</button>
+      <button class="opt" data-v="friends"><span class="em">👥</span>Friends or family</button>
+      <button class="opt" data-v="gpt"><span class="em">💬</span>ChatGPT</button>
+      <button class="opt" data-v="mentor"><span class="em">🎓</span>A mentor or coach</button>
+      <button class="opt" data-v="content"><span class="em">🎧</span>Books, podcasts, YouTube</button>
+    </div>
+  </section>
+
+  <!-- BELIEF A · what if they'd been in the room (their call screen, their example) -->
+  <section class="screen" data-step="3">
+    <div class="inter">
+      <p class="sub" id="gotoH" style="margin:0 0 6px">Most people never get someone who's done it to ask.</p>
+      <h2>Now imagine they were in the room.</h2>
+      <div class="iph call"><div class="isl"></div><div class="ctop">5:30</div>
+        <div class="duo"><figure><img src="img/legend-pg.webp" alt=""><figcaption>Paul Graham</figcaption></figure><figure><img src="img/legend-steve.webp" alt=""><figcaption>Steve Jobs</figcaption></figure></div>
+        <span class="sam"><img src="img/her-warm.webp" alt="">Samantha</span>
+        <div class="said"><small>Paul</small>Arjun asked you twice when he could try it.</div>
+        <div class="said on"><small>Steve</small>And you answered him with a roadmap. Send him the link tonight.</div>
+        <div class="cbtn"><i></i><i></i><i class="end"></i><i></i></div></div>
+      <p class="sub" style="text-align:center;margin-top:12px">They heard your call with Arjun. They caught what you missed.</p>
+    </div>
+    <div class="cta"><button class="btn" data-next>How do they know?</button></div>
+  </section>
+
+  <!-- BELIEF B · the answer: she hears your whole day (their lock screen + Noted, their example) -->
+  <section class="screen" data-step="4">
+    <div class="inter">
+      <span class="pill">Here's how</span>
+      <h2>Samantha hears your whole day.</h2>
+      <p class="sub">Keep your iPhone on you. Calls, meetings, coffee, things you say to no one. She keeps all of it, and your legends use it to coach you.</p>
+      <div class="iph lock"><div class="isl"></div>
+        <div class="quote2">“shoot, need to remember to text Maya back.”</div>
+        <div class="noted2"><img src="img/her-warm.webp" alt=""><span><small>Noted</small>Text Maya back</span><b>✓</b></div>
+        <div class="later"><img src="img/face-pg.jpg" alt=""><span><b>Paul Graham · 9:02 PM</b>You told Maya you'd text her back. It's been six hours.</span></div></div>
+      <p class="src" style="margin-top:12px;text-align:center">🔒 Hold to stop listening. Stored on our private server, deleted when you ask.</p>
+    </div>
+    <div class="cta"><button class="btn" data-next>Continue</button></div>
+  </section>
+
+  <!-- where you get stuck -->
+  <section class="screen" data-step="5">
+    <h2>Where do you get stuck most?</h2>
+    <p class="sub">Be honest. This is who they'll coach.</p>
+    <div class="opts" data-q="stuck" data-single>
+      <button class="opt" data-v="start"><span class="em">⏳</span>Starting. I plan more than I do.</button>
+      <button class="opt" data-v="follow"><span class="em">🔁</span>Following through on what I said I'd do</button>
+      <button class="opt" data-v="decide"><span class="em">⚖️</span>Making the big decisions</button>
+      <button class="opt" data-v="doubt"><span class="em">😶</span>Believing I'm good enough</button>
+      <button class="opt" data-v="focus"><span class="em">🌀</span>Knowing what actually matters</button>
+    </div>
+  </section>
+
+  <!-- when should they step in -->
+  <section class="screen" data-step="6">
+    <h2>When should they step in?</h2>
+    <p class="sub">She hears your day, so your legends know the moment.</p>
+    <div class="opts" data-q="when">
+      <button class="opt" data-v="before"><span class="em">⚡</span>Right before a big moment<span class="chk">✓</span></button>
+      <button class="opt" data-v="avoid"><span class="em">🙈</span>When I'm avoiding something<span class="chk">✓</span></button>
+      <button class="opt" data-v="lost"><span class="em">📉</span>After a setback<span class="chk">✓</span></button>
+      <button class="opt" data-v="night"><span class="em">🌙</span>At the end of the day<span class="chk">✓</span></button>
+      <button class="opt" data-v="any"><span class="em">👀</span>Whenever they spot something<span class="chk">✓</span></button>
+    </div>
+    <div class="cta"><button class="btn" data-next disabled>Continue</button></div>
+  </section>
+
+  <!-- 6 · proof interstitial (stats from moonshot.computer's own page) -->
+  <section class="screen" data-step="7">
+    <div class="inter">
+      <span class="pill">Why it works</span>
+      <div class="big">2× longer</div>
+      <h2 style="margin-top:8px">People keep going twice as long beside someone stronger.</h2>
+      <div class="study">
+        <div class="srow">Alone<span style="width:48%">10.6 min</span></div>
+        <div class="srow">Paired<span class="hi" style="width:100%">21.9 min</span></div>
+      </div>
+      <p class="src">Michigan State University, 2012</p>
+    </div>
+    <div class="cta"><button class="btn" data-next>Continue</button></div>
+  </section>
+
+  <!-- tone -->
+  <section class="screen" data-step="8">
+    <h2>How hard should your legends push you?</h2>
+    <p class="sub">You can change this anytime.</p>
+    <div class="opts" data-q="tone" data-single>
+      <button class="opt" data-v="warm"><span class="em">🤝</span>Encourage me</button>
+      <button class="opt" data-v="straight"><span class="em">🎯</span>Be straight with me</button>
+      <button class="opt" data-v="brutal"><span class="em">🔥</span>Don't let me off the hook</button>
+    </div>
+  </section>
+
+  <!-- build screen -->
+  <section class="screen" data-step="9">
+    <div class="build">
+      <div class="ring" id="ring" style="--p:0"><b id="pct">0%</b></div>
+      <h2>Building your plan…</h2>
+      <ul class="steps" id="steps">
+        <li><i>✓</i>Matching your legends</li>
+        <li><i>✓</i>Where you get stuck</li>
+        <li><i>✓</i>When to step in</li>
+        <li><i>✓</i>How hard to push</li>
+      </ul>
+    </div>
+    <!-- Headway: yes/no pop-ups during the build -->
+    <div class="pop" id="pop"><div><small>To move forward, specify</small><b id="popq"></b><div class="yn"><button data-a="no">No</button><button data-a="yes">Yes</button></div></div></div>
+  </section>
+</div>
+
+<!-- 9 · result = the landing page (MasterClass person-matched page + Headway paywall) -->
+<div class="wrap res" id="res">
+  <div class="top"><img src="img/msmark.png" alt=""><span class="brand">moonshot</span></div>
+  <section style="margin-top:14px">
+    <span class="pill">Your plan is ready</span>
+    <h1>Your coaching plan for <span data-fill="goalTxt">building your business</span></h1>
+    <div class="plan">
+      <div class="coach"><img id="coachImg" src="img/legend-steve.webp" alt=""><div><small>Your coach</small><b data-fill="lead1">Steve Jobs</b><span id="withTxt"></span></div></div>
+      <div class="rows">
+        <div><small>Focus</small><b id="pFocus">Following through</b></div>
+        <div><small>Steps in</small><b data-fill="whenTxt">at the right moment</b></div>
+        <div><small>Style</small><b id="pTone">Straight with you</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Your first week</h2>
+    <p class="sub" style="margin-bottom:12px">Samantha hears your calls, meetings and coffees. <span data-fill="lead1">Steve</span> tells you what you missed.</p>
+    <div class="week" id="week"></div>
+  </section>
+
+  <section id="offer">
+    <div class="offer">
+      <span class="tag">Founding member</span>
+      <p class="anchor">A course costs $2,000. ChatGPT Pro is $200 a month. Your plan is $0.82 a day.</p>
+      <div class="price">$25/mo</div>
+      <p class="then">Then $25/mo for 12 months. Cancel anytime.</p>
+      <ul>
+        <li><span data-fill="lead1">Your coach</span> and every other legend, plus anyone you add</li>
+        <li>Samantha, quiet until called</li>
+        <li>Calls you can join, texts anytime</li>
+        <li>Your whole day, kept</li>
+      </ul>
+      <a class="btn" href="https://moonshot.computer/pay/checkout">Start my plan · $25/mo</a>
+      <div class="timer">Founding price ends Sunday, Nov 1</div>
+      <div class="yc"><b>Y</b>Backed by Y Combinator</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why this isn't another AI app</h2>
+    <p class="sub" style="margin-bottom:14px">Other AI waits for you to type, then forgets you. Samantha hears your whole day and keeps it. That's what lets a legend coach <i>you</i>, not a prompt.</p>
+    <div class="three">
+      <div><b>🎙️ She hears your day</b><p>Full-day memory, like Granola and Wispr Flow, but 24/7.</p></div>
+      <div><b>🧠 Your legends get the context</b><p>Who said what, what they meant, what you missed.</p></div>
+      <div><b>📲 They speak up</b><p>A call or text at the moment it matters.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The mentor you never had. The one who's done it.</h2>
+    <p class="sub" style="margin-bottom:14px">You don't read about them. You talk to them, and they already know your day.</p>
+    <table class="vs">
+      <thead><tr><th></th><th>ChatGPT</th><th>Paid mentor</th><th>Samantha</th></tr></thead>
+      <tbody>
+        <tr><td>Knows your day</td><td class="x">✗</td><td class="x">✗</td><td>✓</td></tr>
+        <tr><td>Has done it</td><td class="x">✗</td><td class="x">✓</td><td>✓</td></tr>
+        <tr><td>Speaks up first</td><td class="x">✗</td><td class="x">✗</td><td>✓</td></tr>
+        <tr><td>There at 11 PM</td><td class="x">✓</td><td class="x">✗</td><td>✓</td></tr>
+        <tr><td>Under $1 a day</td><td class="x">✓</td><td class="x">✗</td><td>✓</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+
+
+  <section>
+    <h2>What it sounds like</h2>
+    <div class="moments" style="margin-top:14px">
+      <div class="moment"><img src="img/face-steve.jpg" alt=""><div><small>Before you ship</small><p>“You showed your roommate the app and only lit up at the search. Ship the search. Hide the rest.”</p></div></div>
+      <div class="moment"><img src="img/face-serena.jpg" alt=""><div><small>After you lose</small><p>“They passed. They also told you what it takes: ten paying customers. Go get ten and walk back in.”</p></div></div>
+      <div class="moment"><img src="img/face-obama.jpg" alt=""><div><small>Before the hard talk</small><p>“You've opened with the good news three times this week. At 3:00, start with the number.”</p></div></div>
+    </div>
+  </section>
+
+
+
+  <section>
+    <h2>Questions</h2>
+    <details><summary>Is this really <span data-fill="lead1">Steve Jobs</span>?</summary><p>They're AI, written from the public record: their interviews, books and talks. They speak the way they spoke, about your day.</p></details>
+    <details><summary>Does it listen all day?</summary><p>Only when you want it to. Hold to stop listening. Stored on our private server, deleted when you ask.</p></details>
+    <details><summary>Is it iPhone only?</summary><p>Yes, Samantha lives on your iPhone.</p></details>
+    <details><summary>Can I cancel?</summary><p>Anytime. Not for you in 7 days? One-word reply, full refund.</p></details>
+    <details><summary>Can I add someone not on the list?</summary><p>Yes. Pick yours, or add anyone.</p></details>
+  </section>
+
+  <p class="foot">Conversations shown are examples written by our team. Legends are AI, written from the public record; they and their estates do not endorse moonshot. © 2026 67 Labs, Inc.</p>
+</div>
+<div class="stick" id="stick"><a class="btn" href="https://moonshot.computer/pay/checkout">Start my plan · $25/mo</a></div>
+
+<script>
+const CAST=[
+ ["steve","Steve Jobs","Apple"],["pg","Paul Graham","Y Combinator"],["serena","Serena Williams","23 Slams"],
+ ["kobe","Kobe Bryant","Mamba mentality"],["oprah","Oprah Winfrey","Built an empire"],["obama","Barack Obama","44th President"],
+ ["elon","Elon Musk","Tesla, SpaceX"],["jony","Jony Ive","Designed the iPhone"],["feynman","Richard Feynman","Nobel physicist"],
+ ["einstein","Albert Einstein","Relativity"],["davinci","Leonardo da Vinci","Painter, inventor"],
+ ["karpathy","Andrej Karpathy","AI researcher"],["carmack","John Carmack","Doom, Oculus"],
+ ["fadell","Tony Fadell","iPod, Nest"],["aurelius","Marcus Aurelius","Emperor, Stoic"]];
+const NAME=Object.fromEntries(CAST.map(c=>[c[0],c[1]]));
+const FIRST=k=>k==="pg"?"Paul":k==="davinci"?"Leonardo":k==="aurelius"?"Marcus":NAME[k].split(" ")[0];
+const GOAL={business:"building your business",career:"leveling up your career",craft:"getting great at your craft",body:"the best shape of your life",voice:"speaking with confidence",next:"your next move"};
+const CONSUME={books:"books",pods:"podcasts",yt:"YouTube interviews",course:"courses",feed:"clips on your feed"};
+const WHEN={before:"before big moments",avoid:"when you're avoiding something",lost:"after a setback",night:"at the end of the day",any:"whenever they spot something"};
+// The one-up: a message from YOUR legend about YOUR goal and sticking point. Draft lines, James to rewrite.
+const MSG={
+ start:{business:"You've redesigned the landing page three times this week. Nobody's seen it. Send it to five people tonight.",career:"You've rewritten that application twice. It's good. Send it before lunch.",craft:"You've watched four tutorials today and made nothing. Make one ugly version. Now.",body:"You planned the workout at 7. It's 4:47. Shoes on. Twenty minutes counts.",voice:"You said you'd record the practice run. You haven't. Do it once, badly, right now.",next:"You've listed the options for a week. Pick the one that scares you and try it for 30 days."},
+ follow:{business:"You told Maya the deck would be done Friday. It's Friday. Send what you have.",career:"You said you'd ask for the raise this week. Your one-on-one is tomorrow at 10.",craft:"You promised yourself a page a day. You're on day 3 of zero. One page tonight.",body:"You said 'one more week' last week too. Today's the day.",voice:"You said you'd speak up in the next meeting. It's in 13 minutes.",next:"You said you'd call Dan about the role. You've said it four times. Call him."},
+ decide:{business:"You've gone back and forth on pricing for nine days. Charge more. You can always come down.",career:"Both offers are fine. Only one makes you nervous in a good way. Take that one.",craft:"Stop picking the style. Finish the piece and the style will pick itself.",body:"You don't need the perfect program. You need the one you'll do tomorrow.",voice:"Say the hard thing first. You'll lose them if you bury it.",next:"You already know. You said it out loud at lunch. Trust that."},
+ doubt:{business:"This morning you said you're not a real founder. By noon you had two customers. I heard both.",career:"You called yourself lucky again. Three wins in a row isn't luck.",craft:"You said it's not good enough. You also couldn't stop smiling when you finished it.",body:"You said you're not an athlete. You also just did your fastest mile.",voice:"You said you're bad at this. Your last talk ran over because people kept asking questions.",next:"You keep asking if you're allowed to want more. You are."},
+ focus:{business:"You touched eleven things today. Only the sales call mattered. Do that first tomorrow.",career:"Half your week is meetings you don't need. Say no to two of them.",craft:"You're polishing the parts nobody sees. Ship the part they do.",body:"Forget the supplements. Sleep by 11 and lift three times.",voice:"Cut the intro. Start with the story about your dad.",next:"You keep saying yes to everything. What did you say no to today?"}};
+const GOTO={noone:"Most people never get someone who's done it to ask.",friends:"Friends care. But they've never built what you're building.",
+ gpt:"ChatGPT answers. It's never done it, and it forgets you by tomorrow.",mentor:"Good mentors are rare, busy, and expensive.",
+ content:"Books and podcasts know them. None of it knows you."};
+const heard=(h,t,c)=>`<div class="hd">🎙️ Heard: ${h}</div><div class="leg"><b><img src="img/face-${c}.jpg" alt="">${NAME[c]}</b>${t}</div>`;
+function tl(id){const L=S.legends.length?S.legends:["steve"],e=document.getElementById(id);if(!e)return;const [h,t]=WEEK[S.goal||"business"][0];
+ e.innerHTML=`<div class="convo">${heard(h,t,L[0])}</div>`}
+const TONE={warm:"",straight:"",brutal:" No excuses."};
+const S={age:null,goal:null,legends:[],goto:null,stuck:null,when:[],tone:null};
+let step=0;const LAST=9;
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+// faces
+const fg=$('.faces');CAST.forEach(([k,n,d])=>{const b=document.createElement('button');b.className='face';b.dataset.v=k;b.innerHTML=`<img src="img/face-${k}.jpg" alt="">${n}<small>${d}</small>`;fg.appendChild(b)});
+function list(a){return a.length<2?a.join(""):a.slice(0,-1).join(", ")+" and "+a[a.length-1]}
+function fill(){
+ const L=S.legends.length?S.legends:["steve"];
+ const f={lead1:NAME[L[0]],leadsShort:list(L.map(FIRST)),leadsLong:list(L.map(k=>NAME[k])),leadsFirstNames:list(L.map(FIRST)),
+  isAre:L.length>1?"are":"is",talkVerb:L.length>1?"talk":"talks",stepVerb:L.length>1?"step":"steps",
+  goalTxt:GOAL[S.goal]||"",whenTxt:S.when.length?list(S.when.map(w=>WHEN[w])):"at the right moment"};
+ if(S.goto&&document.getElementById('gotoH'))gotoH.textContent=GOTO[S.goto]; $$('[data-fill]').forEach(e=>{const v=f[e.dataset.fill];if(v!==undefined&&v!=="")e.textContent=v});
+}
+function go(n){step=n;tl('tlQuiz');$$('.screen').forEach(s=>s.classList.toggle('on',+s.dataset.step===n));$('#bar').style.width=(n/LAST*100)+'%';
+ $('#back').classList.toggle('on',n>0&&n<LAST);fill();window.scrollTo(0,0);if(n===LAST)build()}
+$$('.opts,.faces,.ages').forEach(g=>{const q=g.dataset.q,single='single' in g.dataset,max=+g.dataset.max||99;
+ g.addEventListener('click',e=>{const b=e.target.closest('.opt,.face,.age');if(!b)return;const v=b.dataset.v;
+  if(single){S[q]=v;$$(`[data-q="${q}"] .opt, [data-q="${q}"] .age`).forEach(o=>o.classList.toggle('sel',o===b));setTimeout(()=>go(step+1),220);return}
+  const a=S[q],i=a.indexOf(v);if(i>-1)a.splice(i,1);else{if(a.length>=max)return;a.push(v)}b.classList.toggle('sel',i<0);
+  const nb=g.closest('.screen').querySelector('[data-next]');if(nb)nb.disabled=!a.length;
+  const h=$('#pickhint');if(q==='legends'&&h)h.textContent=a.length?`${a.length} of 3 picked`:'Pick at least one';fill()})});
+$$('[data-next]').forEach(b=>b.addEventListener('click',()=>go(step+1)));
+$('#back').addEventListener('click',()=>go(Math.max(0,step-1)));
+const POPS=["Do you give up when things get hard?","Do you want someone to call you out when you stall?"];
+function build(){let p=0,k=0;const lis=$$('#steps li');const pop=$('#pop');
+ const tick=()=>{p+=2;$('#ring').style.setProperty('--p',p);$('#pct').textContent=p+'%';lis.forEach((li,i)=>li.classList.toggle('done',p>(i+1)*22));
+  if(p>=100){setTimeout(toLander,450);return}
+  if((p===40||p===76)&&k<POPS.length){$('#popq').textContent=POPS[k++];pop.classList.add('on');return}
+  setTimeout(tick,45)};
+ pop.onclick=e=>{if(!e.target.dataset.a)return;pop.classList.remove('on');setTimeout(tick,200)};tick()}
+const LEGIMG=new Set(["angelou","curie","davinci","einstein","elon","feynman","kobe","obama","oprah","pg","serena","steve"]);
+const FOCUS={start:"Starting, not just planning",follow:"Doing what you said you'd do",decide:"Making the big calls",doubt:"Believing you're good enough",focus:"Knowing what matters"};
+const TONETXT={warm:"Encouraging",straight:"Straight with you",brutal:"No excuses"};
+// First week: a conversation Samantha heard, then the coach's read on it. Draft lines for James.
+const WEEK={
+ business:[["Call with Priya, an investor · 32 min","She asked about churn twice. That's her real question. Send her the cohort chart tonight, before she asks a third time."],
+  ["Standup with your team · 15 min","Dan said the launch date was “fine” three times. Dan doesn't think it's fine. Ask him alone what would make it real."],
+  ["Demo for a customer · 40 min","They leaned in at search and went quiet at the dashboard. Ship the search. Hide the dashboard."],
+  ["Pitch practice in the car · 9 min","You talked for six minutes before showing anything. Open with the demo."],
+  ["Coffee with your cofounder · 50 min","You agreed to everything she said. You didn't mean two of them. Tell her which two."]],
+ career:[["One-on-one with your manager · 30 min","She said “visibility” four times. That's what stands between you and the promotion. Present the launch yourself on Thursday."],
+  ["Team meeting · 45 min","Your idea got skipped. Ten minutes later Mark said it and got the credit. Say it, then say it again with your name on it."],
+  ["Call with a recruiter · 20 min","You told her your number first. Don't. On the next call, ask for her range."],
+  ["Lunch with a coworker · 40 min","You complained about the project for half an hour, then said you could fix it in a week. Pitch that fix to your manager."],
+  ["Review prep, talking it out · 12 min","You listed tasks. Lead with the one result that matters: the client you kept."]],
+ craft:[["Feedback call with your editor · 25 min","She said the middle drags, then praised chapter two for its pace. Cut the middle to chapter two's length."],
+  ["Studio session · 2 hrs","You played the first take back three times and said “that one” every time. Stop recording. Use that one."],
+  ["Client review · 30 min","They didn't hate the design. They hated the color, twice. Change the color. Keep the rest."],
+  ["Talking it through on a walk · 15 min","You described the ending you want better than the one you wrote. Write it the way you just said it."],
+  ["Dinner with friends · 1 hr","You called it “just a side thing” three times. Two people asked to see it. Show them."]],
+ body:[["Session with your trainer · 1 hr","He said your left side lags, twice. Add single-leg work this week, three sets, both days."],
+  ["Doctor's appointment · 20 min","She brought up sleep before she said anything about weight. Lights out by 11 this week."],
+  ["Run with a friend · 40 min","You talked the whole way. That's an easy pace. Thursday, run the last mile hard."],
+  ["Call with your mom · 25 min","You told her you're too busy to train. You also told her about three episodes last night. Train before the first one tonight."],
+  ["Gym, between sets · 1 hr","You rested four minutes a set. Ninety seconds. Phone in the bag."]],
+ voice:[["Team meeting · 45 min","You waited 20 minutes to speak, then opened with “this might be dumb.” Lead with the point. Drop the apology."],
+  ["Client presentation · 30 min","They lost you on slide six, right where you sped up. Slow down there next time."],
+  ["Call with your manager · 20 min","You said “I think” eleven times. Say it once at the start, then state it."],
+  ["Practice run out loud · 8 min","The story about your dad landed. The stats didn't. Open with the story."],
+  ["Dinner with friends · 1 hr","You were funny tonight because you weren't trying. Talk in meetings like you talked at dinner."]],
+ next:[["Coffee with a friend at Stripe · 45 min","You asked her six questions about her job and none about yours. You want hers. Ask her who's hiring."],
+  ["Call with your dad · 30 min","You defended your job for 20 minutes. Nobody attacked it. You're convincing yourself."],
+  ["First-round interview · 40 min","You were at your best when they asked what you'd build. Lead with that in round two."],
+  ["Talking it out on a walk · 20 min","You said “if I'm honest” before the startup option every time. Be honest. That's the one."],
+  ["Lunch with your manager · 50 min","She offered you a new team. You said you'd think about it, and your voice dropped. That's a no. Tell her Monday."]]};
+function plan(){const L=S.legends.length?S.legends:["steve"],c=L[0],g=S.goal||"business";
+ $('#coachImg').src=LEGIMG.has(c)?`img/legend-${c}.webp`:`img/face-${c}.jpg`;
+ $('#withTxt').textContent=L.length>1?"With "+list(L.slice(1).map(FIRST))+" on call":"Plus every other legend, on call";
+ $('#pFocus').textContent=FOCUS[S.stuck||"follow"];$('#pTone').textContent=TONETXT[S.tone||"straight"];
+ const days=["Mon","Tue","Wed","Thu","Fri"];
+ $('#week').innerHTML=WEEK[g].map(([h,t],i)=>`<div class="d"><i>${days[i]}</i><div>${heard(h,t,c)}</div></div>`).join("")}
+function toLander(){const q=new URLSearchParams({g:S.goal||"business",l:(S.legends.length?S.legends:["steve"]).join(","),st:S.stuck||"follow",w:S.when.join(","),t:S.tone||"straight"});location.href="result.html?"+q}
+function result(){
+ $('#app').style.display='none';const r=$('#res');r.classList.add('on');$('#stick').classList.add('on');window.scrollTo(0,0);
+ const L=S.legends.length?S.legends:["steve"];const g=S.goal||"business",st=S.stuck||"follow";
+ plan();
+ fill();
+}
+// review shortcut: #s=N jumps to a screen with sample answers (#s=9 = result page)
+const m=location.hash.match(/s=(\d+)/);
+if(m){Object.assign(S,{goal:"business",legends:["steve","pg"],goto:"noone",stuck:"follow",when:["before","avoid"],tone:"straight"});
+ $$('.face').forEach(f=>f.classList.toggle('sel',S.legends.includes(f.dataset.v)));const n=+m[1];if(n>=10){toLander()}else go(n)}
+</script>
+</body>
+</html>
