@@ -4,6 +4,14 @@ Static pages for moonshot.computer. Each folder is the URL it serves; every page
 (CSS and JS inline, no build step) and the pages share `/img` and `/vid`. On the live site these files sit under
 `/landing-pages-oct2/`, so keep the folder layout as it is here.
 
+## Upload first (27 Oct): Samantha versions of the listicles that sold, at /sam/
+
+**New folder `sam/`** (4 pages) and **new images `img/sam-*.webp`** (15 files). Serve at moonshot.computer/sam/...:
+`/sam/never-set-a-reminder` (was LST-001, 8 purchases), `/sam/siri-cant` (LST-002, 6), `/sam/busy-dads` (LST-003, 5),
+`/sam/note-takers` (LST-005, 12). Same pages and photos with the earpiece edited out; product shots are Samantha on an
+iPhone lock screen; offer is 3 days free then $25/mo founding price. Every button goes to moonshot.computer/remember/
+(the 3-day trial page). Same pixel as the rest of the site.
+
 ## Upload first (25 Oct): the Samantha quiz funnel at /quiz
 
 **New folder `quiz/`** (55 files: `index.html`, `result.html`, `img/`, `scenes/`, `squad/img/logos/`). Serve it at
