@@ -4,6 +4,14 @@ Static pages for moonshot.computer. Each folder is the URL it serves; every page
 (CSS and JS inline, no build step) and the pages share `/img` and `/vid`. On the live site these files sit under
 `/landing-pages-oct2/`, so keep the folder layout as it is here.
 
+## Upload first (28 Oct): the Moon $1 reservation page at /reserve
+
+**New folder `reserve/`** (`index.html` + `thanks/index.html`) and **new images `img/moon-*` and `img/samantha.webp`**
+(20 files). Serve at moonshot.computer/reserve and /reserve/thanks. Built from /a, in the /moon page's brand.
+Before it goes live, replace the placeholders: `[STRIPE_$1_CHECKOUT]` (the $1 Stripe link; its success URL is
+/reserve/thanks), the launch date (Nov 18) and ship window (spring 2027), `[SMS_ENDPOINT]` and `[VIP_GROUP_LINK]` on
+the thank-you page. Pixel: PageView on both, Purchase (value 1) on /reserve/thanks.
+
 ## Upload first (27 Oct): Samantha versions of the listicles that sold, at /sam/
 
 **New folder `sam/`** (4 pages) and **new images `img/sam-*.webp`** (15 files). Serve at moonshot.computer/sam/...:

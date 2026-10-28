@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Your Moon Is Reserved</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+/* After the $1: the standard VIP thank-you (confirm, get the phone for the launch text, calendar, share). Stripe's
+   success_url points here. The SMS form posts to [SMS_ENDPOINT] (founders' tool: Postscript, Klaviyo, Attentive...). */
+:root{--bg:#f6f5f1;--card:#fff;--ink:#1d1d1f;--muted:#6e6e73;--rule:#e5e3dd;--blue:#2D6BE0;--line:#17120E;
+  --serif:ui-serif,"New York","Iowan Old Style",Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif;color-scheme:light}
+*{box-sizing:border-box}html,body{margin:0;overflow-x:hidden}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+.w{max-width:520px;margin:0 auto;padding:0 max(18px,env(safe-area-inset-left,0px)) 40px}
+.top{display:flex;align-items:center;justify-content:center;gap:8px;height:56px;font:600 18px var(--sans)}.top img{width:22px;height:22px}
+.glow{margin:4px auto 0;width:180px;border-radius:28px;overflow:hidden;background:#000}.glow img{width:100%;display:block}
+h1{font:500 clamp(34px,9vw,46px)/1.05 var(--serif);text-align:center;margin:20px 0 8px}
+.sub{color:var(--muted);text-align:center;margin:0 0 22px}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:22px;padding:20px;margin-bottom:12px}
+.card h2{font:500 24px/1.15 var(--serif);margin:0 0 6px}.card p{margin:0 0 12px;color:var(--muted);font-size:15.5px}
+.k{font:700 12px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--blue)}
+input{width:100%;font:17px var(--sans);padding:15px 16px;border:1.5px solid var(--rule);border-radius:14px;background:#fff;margin-bottom:10px}
+input:focus{outline:none;border-color:var(--blue)}
+.btn{display:block;width:100%;text-align:center;background:var(--blue);color:#fff;text-decoration:none;font:700 17px/1 var(--sans);padding:17px;border-radius:999px;border:2px solid var(--line);box-shadow:0 4px 0 var(--line);cursor:pointer}
+.ghost{display:block;width:100%;text-align:center;background:#fff;color:var(--ink);text-decoration:none;font:600 16px/1 var(--sans);padding:15px;border-radius:999px;border:1.5px solid var(--rule);margin-top:8px;cursor:pointer}
+.fine{font-size:12.5px;color:var(--muted);margin:10px 0 0}
+.share{display:flex;gap:8px}.share input{margin:0;font-size:14px}.share button{flex:none;width:auto;padding:0 18px;font-size:15px}
+.done{display:none;color:#2f8a57;font-weight:700;text-align:center;margin-top:8px}
+.ph{background:#fff2c2;outline:1px dashed #c99a00;border-radius:4px;padding:0 3px}
+</style>
+</head>
+<body>
+<div class="w">
+  <div class="top"><img src="/img/msmark.png" alt="">moonshot</div>
+  <div class="glow"><img src="/img/moon-glow.webp" alt="The Moon glowing"></div>
+  <h1>You're a VIP. Your Moon is reserved.</h1>
+  <p class="sub">You're in the first 300: a free starlight box and 6 months of Samantha free when your Moon arrives.</p>
+
+  <div class="card">
+    <p class="k">Step 1 of 2 · don't miss launch</p>
+    <h2>Get a text the minute we're live.</h2>
+    <p>First Light spots go in order on launch day. We'll text you the minute we're live.</p>
+    <form id="sms" action="[SMS_ENDPOINT]" method="post">
+      <input type="tel" name="phone" autocomplete="tel" placeholder="Your mobile number" required>
+      <button class="btn" type="submit">Text me at launch</button>
+      <p class="fine">One text at launch, one reminder after. Reply STOP anytime. Msg &amp; data rates may apply.</p>
+    </form>
+    <div class="done" id="smsDone">✓ You'll get a text at launch.</div>
+  </div>
+
+  <div class="card">
+    <p class="k">Step 2 of 2 · save the date</p>
+    <h2><span class="ph">Tue, Nov 18</span> at <span class="ph">9 AM PT</span></h2>
+    <p>We'll text and email you the minute we're live.</p>
+    <a class="ghost" id="cal" download="moon-launch.ics">Add to calendar</a>
+  </div>
+
+  <div class="card">
+    <p class="k">The VIP group</p>
+    <h2>Join the First Light circle.</h2>
+    <p>Build updates from the founders and early looks at the Moon.</p>
+    <a class="ghost" href="[VIP_GROUP_LINK]">Join on WhatsApp</a>
+  </div>
+
+  <div class="card">
+    <p class="k">Know someone who'd want one?</p>
+    <h2>Send them your link.</h2>
+    <p>They get 6 months of Samantha free too.</p>
+    <div class="share"><input id="link" readonly value="https://moonshot.computer/reserve"><button class="btn" id="copy" type="button">Copy</button></div>
+  </div>
+</div>
+<script>
+(function(){var ics=["BEGIN:VCALENDAR","VERSION:2.0","BEGIN:VEVENT","DTSTART:20261118T170000Z","DTEND:20261118T173000Z",
+"SUMMARY:The Moon launches on Kickstarter","DESCRIPTION:Check your texts for the Kickstarter link.","END:VEVENT","END:VCALENDAR"].join("\r\n");
+document.getElementById('cal').href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);})();
+document.getElementById('copy').onclick=function(){var i=document.getElementById('link');i.select();try{navigator.clipboard.writeText(i.value)}catch(e){}this.textContent="Copied";};
+document.getElementById('sms').addEventListener('submit',function(e){if(this.action.indexOf('http')!==0){e.preventDefault();this.style.display='none';document.getElementById('smsDone').style.display='block';}});
+</script>
+</body>
+</html>
