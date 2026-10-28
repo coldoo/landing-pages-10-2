@@ -8,7 +8,7 @@ Static pages for moonshot.computer. Each folder is the URL it serves; every page
 
 **New folder `reserve/`** (`index.html` + `thanks/index.html`) and **new images `img/moon-*` and `img/samantha.webp`**
 (20 files). Serve at moonshot.computer/reserve and /reserve/thanks. Built from /a, in the /moon page's brand.
-Before it goes live, replace the placeholders: `[STRIPE_$1_CHECKOUT]` (the $1 Stripe link; its success URL is
+**Integration steps: `reserve/INTEGRATE.md`** (Stripe link, pixel Purchase, dates, SMS form, what to confirm). In short: replace `[STRIPE_$1_CHECKOUT]` (the $1 Stripe link; its success URL is
 /reserve/thanks), the launch date (Nov 18) and ship window (spring 2027), `[SMS_ENDPOINT]` and `[VIP_GROUP_LINK]` on
 the thank-you page. Pixel: PageView on both, Purchase (value 1) on /reserve/thanks.
 
