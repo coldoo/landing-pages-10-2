@@ -64,5 +64,15 @@ The ads will optimize for this event, so test it with Meta's Test Events tool be
 2. Confirmation that Purchase fires on /reserve/thanks in Test Events
 3. The launch date and ship window you used
 
-He uploads the 6 statics PAUSED into their own ad set, optimized for that Purchase event, and turns them on only once
-you've both said go.
+## 8. Turning on the ads (already uploaded, all PAUSED)
+
+Ads Manager → campaign **MS · CBO · Static batch 1 + c04 · IC · /squad/ trial · 10-24** (id 120261917920820586) →
+ad set **NEW · STATIC · Moon $1 reserve → /reserve · 10-28** (id 120261978487410586).
+
+- 6 ads, all paused: M1-mist, M2-glow, M3-note, M4-worn, M5-first300, M6-ticket ("· moon reserve · 10-28").
+- Link: https://moonshot.computer/reserve. Purchase-optimized on the site pixel, $20/day minimum, Advantage+ placements.
+- **Turn on only after steps 1-3 work**: /reserve is live, the $1 Stripe link goes to /reserve/thanks, and Purchase
+  fires there. Then switch on the ad set and the 6 ads.
+- The ad copy says "launches on Kickstarter soon" (no date), so nothing in the ads needs editing when the date is set.
+- The $1 reservations count as Purchases in the same campaign as the Samantha checkouts, so the campaign's purchase
+  numbers will mix the two. Read results per ad set.
